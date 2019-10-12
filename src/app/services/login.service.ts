@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { AppRoutingPreloaderService } from '../services/app-routing-preloader.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class LoginService {
   loading: any;
 
   constructor(private http: HttpClient, private loadingController: LoadingController,
-              private alertController: AlertController ) { }
+              private alertController: AlertController, private routingService: AppRoutingPreloaderService,
+              private router: Router ) { }
 
   async presentLoadingWithOptions() {
     this.loading = await this.loadingController.create({
@@ -55,14 +58,20 @@ export class LoginService {
     await alert.present();
   }
 
+  async cargaLobby() {
+    this.routingService.preloadRoute('lobby');
+  }
+
   logAccount(user: string, password: string) {
     this.presentLoadingWithOptions();
     this.urlServer = 'http://localhost:8000/log' + '?email=' + user + '&password=' + password;
     this.http.get(this.urlServer).subscribe((response: any) => {
-      setTimeout(() => {
+      setTimeout(async () => {
         console.log(response);
         this.isLoading = false;
         this.loadingController.dismiss();
+        await this.cargaLobby();
+        await this.router.navigateByUrl('/lobby');
       }, 500);
     }, err => {
         this.loadingController.dismiss();

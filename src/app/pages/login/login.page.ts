@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async onSubmitTemplate() {
+  onSubmitTemplate() {
     console.log(this.usuario);
     this.loginService.logAccount(this.usuario.email, this.usuario.password);
   }

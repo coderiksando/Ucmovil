@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { AppRoutingPreloaderService } from '../services/app-routing-preloader.service';
 import { Router } from '@angular/router';
+import { AppRoutingPreloaderService } from '../services/app-routing-preloader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class LoginService {
 
   constructor(private http: HttpClient, private loadingController: LoadingController,
               private alertController: AlertController, private routingService: AppRoutingPreloaderService,
-              private router: Router ) { }
+              private router: Router) { }
 
   async presentLoadingWithOptions() {
     this.loading = await this.loadingController.create({
@@ -82,5 +82,7 @@ export class LoginService {
           this.conectionErrorAlert();
         }
     });
+    this.urlServer = 'http://localhost:8000/';
+    console.log(this.urlServer);
   }
 }

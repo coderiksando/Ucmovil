@@ -9,6 +9,8 @@ import { MenuComponent } from '../menu/menu.component';
 export class NavbarComponent implements OnInit {
 
   @Input() titulo: string;
+  showMe = false;
+  busqueda = true;
 
   constructor( private menuComponent: MenuComponent ) { }
 
@@ -19,7 +21,11 @@ export class NavbarComponent implements OnInit {
   }
 
   search() {
-    console.log('buscar');
+    if (this.showMe === false) {
+      this.showMe = true;
+    } else {
+      this.showMe = false;
+    }
   }
 
 }

@@ -4,3 +4,7 @@ ion-button{
     --ion-color-base: transparent !important;
     width: 100%;
 }
+
+ion-card-content{
+    user-select: text;
+}

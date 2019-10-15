@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { LoginService } from '../../services/login.service';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor(private loginService: LoginService, public httpclient: HttpClient) {
+  constructor(private loginService: LoginService, public httpclient: HttpClient, 
+              public newsService: NewsService) {
 
   }
 
@@ -24,6 +25,7 @@ export class LoginPage implements OnInit {
 
   async onSubmitTemplate() {
     this.loginService.logAccount(this.usuario.email, this.usuario.password);
+    this.newsService.cargarNoticias();
   }
 
 }

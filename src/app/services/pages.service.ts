@@ -16,32 +16,67 @@ export class PagesService  {
   constructor() { }
 
   paginaAlumno() {
-    if (this.componentes.length === 1) {
-      this.componentes.push(
-        {
-          icon: 'alert',
-          name: 'No implementado',
-          redirectTo: '/noValido'
-        },
-        {
-          icon: 'power',
-          name: 'Finalizar sesión',
-          redirectTo: '/login'
-        }
-      );
-    }
+    this.componentes.length = 1;
+    this.componentes.push(
+      {
+        icon: 'alert',
+        name: 'Alumno',
+        redirectTo: '/noValido'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
+      }
+    );
   }
 
   paginaProfesor() {
-
+    this.componentes.length = 1;
+    this.componentes.push(
+      {
+        icon: 'alert',
+        name: 'Profesor',
+        redirectTo: '/noValido'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
+      }
+    );
   }
 
   paginaDirector() {
-
+    this.componentes.length = 1;
+    this.componentes.push(
+      {
+        icon: 'alert',
+        name: 'Director',
+        redirectTo: '/noValido'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
+      }
+    );
   }
 
   paginaSecretaria() {
-
+    this.componentes.length = 1;
+    this.componentes.push(
+      {
+        icon: 'alert',
+        name: 'Secretaria',
+        redirectTo: '/noValido'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
+      }
+    );
   }
 
 }

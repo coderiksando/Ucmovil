@@ -5,9 +5,10 @@
                 <ion-icon name="menu"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title class="ion-text-capitalize">{{titulo}}</ion-title>
+        <ion-title *ngIf="!showMe" class="ion-text-capitalize">{{titulo}}</ion-title>
         <ion-buttons slot="end">
-            <ion-button fill="outline" (click)="search()">
+            <ion-searchbar *ngIf="showMe"></ion-searchbar>
+            <ion-button *ngIf="busqueda" fill="outline" (click)="search()">
                 <ion-icon name="search"></ion-icon>
             </ion-button>
         </ion-buttons>

@@ -1,5 +1,46 @@
 <app-menu></app-menu>
 <app-navbar [titulo]="titulo || UCMovil"></app-navbar>
 
-<ion-content class="ion-no-padding">
+<ion-content>
+    <!-- <ion-card mode="ios" button="true" href="https://www.youtube.com/watch?v=mbvNBasnHFI">
+        <ion-card-header>
+            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            <ion-card-title>Card Title</ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content>
+            Keep close to Nature's heart... and break clear away, once in awhile,
+            and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+    </ion-card> -->
+    
+    <ion-card mode="ios" *ngFor="let noticia of newsService.respuesta.noticias">
+        <ion-card-header>
+            <ion-card-title> <ion-icon name="paper"></ion-icon> {{noticia.titulo}} </ion-card-title>
+            <ion-card-subtitle> 
+                <ion-icon name="person"></ion-icon>
+                Escrito por: <b>{{noticia.propietario}}</b>
+                <br>
+                <ion-icon name="calendar"></ion-icon>
+                {{getDate(noticia.updated_at)[2]}}-{{getDate(noticia.updated_at)[1]}}-{{getDate(noticia.updated_at)[0]}}
+                <ion-icon name="time"></ion-icon>{{getTime(noticia.updated_at)}}
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            {{noticia.texto}}
+            <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit repellat amet exercitationem hic ullam maxime nobis optio soluta vitae laboriosam libero corrupti voluptatem voluptate excepturi, fuga distinctio alias neque. Blanditiis!
+        </ion-card-content>
+        <br>
+        <!-- <ion-img src="../../../assets/8.2 stan-lee.jpg" class="ion-padding"></ion-img> -->
+    </ion-card>
+    
+    <!-- <ion-card mode="ios">
+        <ion-item>
+            <ion-icon name="construct" slot="start"></ion-icon>
+            <ion-label>Trabajamos para usted</ion-label>
+        </ion-item>
+        <ion-card-content>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque minima hic quibusdam! Eos qui nam necessitatibus sequi, fugit eligendi sunt praesentium pariatur nisi atque velit porro nobis ipsam consequatur?
+        </ion-card-content>
+    </ion-card> -->
 </ion-content>

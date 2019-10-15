@@ -6,20 +6,26 @@ import { IonicModule } from '@ionic/angular';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    NavbarComponent
   ],
   exports: [
+    RouterModule,
     HeaderComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    NavbarComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     IonicModule
   ]

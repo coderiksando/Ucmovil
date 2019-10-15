@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
+  datos: any;
   urlServer: string;
   cordova: any;
   params = {};
@@ -66,12 +67,12 @@ export class LoginService {
     this.presentLoadingWithOptions();
     this.urlServer = 'http://localhost:8000/log' + '?email=' + user + '&password=' + password;
     this.http.get(this.urlServer).subscribe((response: any) => {
-      setTimeout(async () => {
-        console.log(response);
+      setTimeout(() => {
+        this.datos = response;
         this.isLoading = false;
         this.loadingController.dismiss();
-        await this.cargaLobby();
-        await this.router.navigateByUrl('/lobby');
+        this.cargaLobby();
+        this.router.navigateByUrl('/lobby');
       }, 500);
     }, err => {
         this.loadingController.dismiss();

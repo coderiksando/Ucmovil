@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginService } from '../../services/login.service';
-import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +10,19 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  respuesta: Observable<any>;
-
   usuario = {
     email: '',
     password: ''
   };
 
-  constructor(private loginService: LoginService, public httpclient: HttpClient ,
-              public loadingController: LoadingController) {
+  constructor(private loginService: LoginService, public httpclient: HttpClient) {
 
   }
 
   ngOnInit() {
   }
 
-  onSubmitTemplate() {
-    console.log(this.usuario);
+  async onSubmitTemplate() {
     this.loginService.logAccount(this.usuario.email, this.usuario.password);
   }
 

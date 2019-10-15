@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LobbyPage } from './lobby.page';
-import { ComponentsModule } from '../../components/components.module';
+import { PerfilPage } from './perfil.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: LobbyPage
+    component: PerfilPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    ComponentsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [LobbyPage]
+  declarations: [PerfilPage]
 })
-export class LobbyPageModule {}
+export class PerfilPageModule {}

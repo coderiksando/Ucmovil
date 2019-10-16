@@ -16,6 +16,7 @@ export class NewsService {
     this.url += 'secretaria/mostrar_noticia';
     this.httpClient.get(this.url).subscribe((response: any) => {
         this.respuesta = response;
+        // console.log(response);
     }, err => {
         console.log('error');
     });

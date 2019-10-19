@@ -24,8 +24,8 @@ export class LoginPage implements OnInit {
   }
 
   async onSubmitTemplate() {
-    this.loginService.logAccount(this.usuario.email, this.usuario.password);
-    this.newsService.cargarNoticias();
+    await this.loginService.logAccount(this.usuario.email, this.usuario.password);
+    await this.newsService.cargarNoticias();
   }
 
 }

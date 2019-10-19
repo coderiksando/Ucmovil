@@ -56,6 +56,11 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
+        icon: 'paper',
+        name: 'Ingreso de noticias',
+        redirectTo: '/ingreso-noticia'
+      },
+      {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'
@@ -70,6 +75,11 @@ export class PagesService  {
         icon: 'alert',
         name: 'Secretaria',
         redirectTo: '/noValido'
+      },
+      {
+        icon: 'paper',
+        name: 'Ingreso de noticias',
+        redirectTo: '/ingreso-noticia'
       },
       {
         icon: 'power',

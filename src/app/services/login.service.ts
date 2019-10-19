@@ -10,7 +10,8 @@ import { AppRoutingPreloaderService } from '../services/app-routing-preloader.se
 })
 export class LoginService {
   datos: any;
-  urlServer: string;
+  datosDetalle: any;
+  urlServer = 'http://localhost:8000/';
   cordova: any;
   params = {};
   headers = {};
@@ -63,26 +64,51 @@ export class LoginService {
     this.routingService.preloadRoute('lobby');
   }
 
-  logAccount(user: string, password: string) {
-    this.presentLoadingWithOptions();
-    this.urlServer = 'http://localhost:8000/log' + '?email=' + user + '&password=' + password;
-    this.http.get(this.urlServer).subscribe((response: any) => {
-      setTimeout(() => {
-        this.datos = response;
-        this.isLoading = false;
-        this.loadingController.dismiss();
-        this.cargaLobby();
-        this.router.navigateByUrl('/lobby');
-      }, 500);
-    }, err => {
-        this.loadingController.dismiss();
-        if (err.error.text === 'no') {
-          this.wrongDataAlert();
-        } else {
-          this.conectionErrorAlert();
-        }
+  async accountDetails(datoUsuario) {
+    // console.log(datoUsuario.usuarios[0]);
+    let tipoUsuario = datoUsuario.usuarios[0].tipo;
+    let url = this.urlServer;
+    if (tipoUsuario === 'alumno') {
+      tipoUsuario = 'alumnos';
+      url += 'datos_a';
+    }
+    if (tipoUsuario === 'profesor') {
+      tipoUsuario = 'profesores';
+      url += 'datos_p';
+    }
+    if (tipoUsuario === 'secretaria') {
+      tipoUsuario = 'secretarias';
+      url += 'datos_s';
+    }
+    if (tipoUsuario === 'director_carrera') {
+      tipoUsuario = 'directores_carreras';
+      url += 'datos_d';
+    }
+    url += '?id=' + datoUsuario.usuarios[0].id + '&tipo=' + tipoUsuario;
+    this.http.get(url).subscribe((response: any) => {
+      this.datosDetalle = response;
+      // cambios de pantalla solo deben ocurrir una vez todos los datos estén cargados
+      this.router.navigateByUrl('/lobby');
     });
-    this.urlServer = 'http://localhost:8000/';
-    console.log(this.urlServer);
+  }
+
+  async logAccount(user: string, password: string) {
+    this.presentLoadingWithOptions();
+    let url = this.urlServer;
+    url += 'log?email=' + user + '&password=' + password;
+    await this.http.get(url).subscribe((response: any) => {
+      this.datos = response;
+      this.isLoading = false;
+      this.loadingController.dismiss();
+      this.accountDetails(response);
+    }, err => {
+      this.loadingController.dismiss();
+      if (err.error.text === 'no') {
+        this.wrongDataAlert();
+      } else {
+        this.conectionErrorAlert();
+      }
+    });
+    url = this.urlServer;
   }
 }

@@ -1,0 +1,73 @@
+<app-menu></app-menu>
+<app-header [titulo]="titulo" [botonRegresoCancelar]="botonRegresoCancelar"></app-header>
+
+<ion-content>
+    <ion-grid fixed class="ion-padding">
+        <ion-row>
+            <ion-col>
+                <form #formulario="ngForm" (ngSubmit)="envioNoticia()">
+                    <ion-list>
+                        <ion-item lines="none">
+                            <ion-label>Titulo:</ion-label>
+                        </ion-item>
+                        <ion-item lines="none" class="borde">
+                            <ion-textarea  type="text" name="titulo" type="text"
+                                        [(ngModel)]="noticia.titulo" required
+                                        placeholder="Escriba titular" 
+                                        autoGrow>
+                            </ion-textarea>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label>Contenido:</ion-label>
+                        </ion-item>
+                        <ion-item lines="none" class="borde">
+                            <ion-textarea   type="text" name="texto" type="text"
+                                            [(ngModel)]="noticia.texto" required
+                                            placeholder="Escriba el contenido"
+                                            autoGrow>
+                            </ion-textarea>
+                        </ion-item>
+                        <br>
+                        <ion-item>
+                            <ion-label>Estado de noticia:</ion-label>
+                            <ion-select [(ngModel)]="noticia.estado" value="Aprobada" okText="Elegir" cancelText="Cancelar" name="estado" >
+                                <ion-select-option value="Aprobada">Aprobada</ion-select-option>
+                                <ion-select-option value="Revision">Revision</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <br>
+                        <br>
+                        <ion-button shape="round" expand="full" type="submit" [disabled]="formulario.invalid">
+                            Enviar
+                        </ion-button>
+                        <br>
+                    </ion-list>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <br>
+    <ion-item lines="none">
+        <ion-label>Resultado:</ion-label>
+    </ion-item>
+    
+    <ion-card mode="ios">
+        <ion-card-header>
+            <ion-card-title> <ion-icon name="paper"></ion-icon> {{noticia.titulo}} </ion-card-title>
+            <ion-card-subtitle> 
+                <ion-icon name="person"></ion-icon>
+                Escrito por: <b>{{noticia.propietario}}</b>
+                <br>
+                <ion-icon name="calendar"></ion-icon>
+                {{obtenerFecha()}}
+                <ion-icon name="time"></ion-icon>{{obtenerHora()}}
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            {{noticia.texto}}
+            <br>
+        </ion-card-content>
+        <br>
+    </ion-card>
+
+</ion-content>

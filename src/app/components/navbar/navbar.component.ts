@@ -10,6 +10,7 @@ import { NewsService } from '../../services/news.service';
 export class NavbarComponent implements OnInit {
 
   @Input() titulo: string;
+
   showMe = false;
   busqueda = true;
   noticiaArrayOriginal: any;
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
   constructor( private menuComponent: MenuComponent, private newsService: NewsService ) { }
 
   ngOnInit() {
-    this.noticiaArrayOriginal = JSON.parse(JSON.stringify(this.newsService.respuesta.noticias));
+    this.noticiaArrayOriginal = JSON.parse(JSON.stringify(this.newsService.noticiaRespuesta.noticias));
   }
 
   clickMenu() {
@@ -35,12 +36,12 @@ export class NavbarComponent implements OnInit {
   }
 
   busquedaEvento(event) {
-    this.newsService.respuesta.noticias = JSON.parse(JSON.stringify(this.noticiaArrayOriginal));
+    this.newsService.noticiaRespuesta.noticias = JSON.parse(JSON.stringify(this.noticiaArrayOriginal));
     this.noBorrar = [];
     this.borrar = [];
     let nNoticia = 0;
     if (event.target.value.length !== 0) {
-      this.newsService.respuesta.noticias.forEach(noticia => {
+      this.newsService.noticiaRespuesta.noticias.forEach(noticia => {
         for (const elementoNoticia in noticia) {
           if (elementoNoticia !== 'tag' && elementoNoticia !== 'estado' &&
               elementoNoticia !== 'id_noticia' && elementoNoticia !== 'created_at') {
@@ -53,7 +54,7 @@ export class NavbarComponent implements OnInit {
         }
         nNoticia += 1;
       });
-      for (let index = 0; index < this.newsService.respuesta.noticias.length ; index++) {
+      for (let index = 0; index < this.newsService.noticiaRespuesta.noticias.length ; index++) {
         if (this.noBorrar.indexOf(index) === -1) {
           this.borrar.push(index);
         }
@@ -62,7 +63,7 @@ export class NavbarComponent implements OnInit {
     if (this.borrar.length > 0) {
       let aux = 0;
       this.borrar.forEach(element => {
-        this.newsService.respuesta.noticias.splice(element - aux, 1);
+        this.newsService.noticiaRespuesta.noticias.splice(element - aux, 1);
         aux += 1;
       });
     }

@@ -15,7 +15,6 @@ export class LobbyPage implements OnInit {
   constructor( private menuComponent: MenuComponent, private newsService: NewsService) { }
 
   ngOnInit() {
-    console.log(this.newsService.respuesta.noticias);
   }
 
   getDate(fecha) {
@@ -27,6 +26,10 @@ export class LobbyPage implements OnInit {
   getTime(fecha) {
     const fechasCompleta = fecha.split(' ');
     return fechasCompleta[1];
+  }
+
+  async refrescarNoticias(event) {
+    await this.newsService.refrescarNoticias(event);
   }
 
 }

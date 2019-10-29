@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { PagesService } from '../../services/pages.service';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  lista: Pagina[];
+  showSubmenu = false;
+
+  lista = [];
 
   constructor(private menu: MenuController, private pagesService: PagesService,
-              private loginService: LoginService, private router: Router ) { }
+              private loginService: LoginService, private router: Router, private platform: Platform ) { }
 
   ngOnInit() {
     this.lista = this.pagesService.componentes;
@@ -40,9 +42,8 @@ export class MenuComponent implements OnInit {
     this.menu.open('first');
   }
 
-}
-interface Pagina {
-  icon: string;
-  name: string;
-  redirectTo: string;
+  menuItemHandler(): void {
+    this.showSubmenu = !this.showSubmenu;
+  }
+
 }

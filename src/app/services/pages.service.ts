@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PagesService  {
 
-  componentes: Pagina[] = [
+  componentes: any = [
     {
       icon: 'person',
       name: 'Perfil',
@@ -61,6 +61,16 @@ export class PagesService  {
         redirectTo: '/ingreso-noticia'
       },
       {
+        icon: 'bookmarks',
+        name: 'Ingreso de versiones de ramos',
+        redirectTo: '/ingreso-version-asignatura'
+      },
+      {
+        icon: 'person-add',
+        name: 'Asignación de profesores a ramos',
+        redirectTo: '/asignacion-profesores-version-ramos'
+      },
+      {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'
@@ -89,9 +99,4 @@ export class PagesService  {
     );
   }
 
-}
-interface Pagina {
-  icon: string;
-  name: string;
-  redirectTo: string;
 }

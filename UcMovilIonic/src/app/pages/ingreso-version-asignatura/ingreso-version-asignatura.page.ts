@@ -17,9 +17,8 @@ export class IngresoVersionAsignaturaPage implements OnInit {
   actualYear: number;
 
   versionRamo = {
-    id_ramo       : Number(),
-    id_asignatura : String(),
-    id_profesor   : Number(),
+    id_asignatura : String,
+    id_profesor   : Number,
     year          : Number(),
     semestre      : Number()
   };
@@ -33,7 +32,6 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     this.actualYear = new Date().getFullYear();
     this.versionRamo.year = this.actualYear;
     this.versionRamo.semestre = 1;
-    console.log(this.versionRamo.semestre);
   }
 
   async modalProfesor() {
@@ -52,9 +50,6 @@ export class IngresoVersionAsignaturaPage implements OnInit {
 
   envioVersionRamo() {
     console.log(this.versionRamo);
-  }
-  verSemestre() {
-    console.log(this.versionRamo.semestre);
   }
 
 }

@@ -34,53 +34,57 @@ class HomeController extends Controller
         $id = $request->id;
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
-        foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-            echo $user->ano_ingreso. ",";
-            echo $user->ano_nacimiento. ",";
-            echo $user->direccion. ",";
-        }
-        return;
+        return $usuario;
+        // foreach($usuario as $user){
+        //     echo $user->nombre. ",";
+        //     echo $user->apodo. ",";
+        //     echo $user->telefono. ",";
+        //     echo $user->ano_ingreso. ",";
+        //     echo $user->ano_nacimiento. ",";
+        //     echo $user->direccion. ",";
+        // }
+        // return;
     }
 
     public function Datos_s(Request $request){
         $id = $request->id;
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
-        foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-        }
-        return;
+        return $usuario;
+        // foreach($usuario as $user){
+        //     echo $user->nombre. ",";
+        //     echo $user->apodo. ",";
+        //     echo $user->telefono. ",";
+        // }
+        // return;
     }
 
     public function Datos_d(Request $request){
         $id = $request->id;
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
-        foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-            echo $user->especialidad. ",";
-        }
-        return;
+        return $usuario;
+        // foreach($usuario as $user){
+        //     echo $user->nombre. ",";
+        //     echo $user->apodo. ",";
+        //     echo $user->telefono. ",";
+        //     echo $user->especialidad. ",";
+        // }
+        // return;
     }
 
     public function datos_p(Request $request){
         $id = $request->id;
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
-        foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-            echo $user->especialidad. ",";
-        }
-        return;
+        return $usuario;
+        // foreach($usuario as $user){
+        //     echo $user->nombre. ",";
+        //     echo $user->apodo. ",";
+        //     echo $user->telefono. ",";
+        //     echo $user->especialidad. ",";
+        // }
+        // return;
     }
 
     public function CambioC(Request $request){

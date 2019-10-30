@@ -20,7 +20,7 @@ class LoginController extends Controller
 
             $Usuarios["usuarios"] =   DB::table('users')->where('email', Auth()->user()->email)->get();
             //conexion a la base de datos y ordenados
-            return response()->json($Usuarios);//entrega datos en forma de objeto json
+            return $Usuarios;//entrega datos en forma de objeto json
     	}
     	return "no";
     }

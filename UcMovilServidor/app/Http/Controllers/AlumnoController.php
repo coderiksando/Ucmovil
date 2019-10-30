@@ -107,6 +107,6 @@ class AlumnoController extends Controller
       $solicitudes->estado = $estado;
       $solicitudes->save();
 
-      return "ok";
+      // return "ok";
     }
 }

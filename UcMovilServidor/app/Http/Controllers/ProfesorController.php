@@ -62,14 +62,14 @@ class ProfesorController extends Controller
         $ramoactual->nota = $request->$i;
         $ramoactual->save();
       }
-     return "ok";
+     // return "ok";
     }
 
      public function enviar_boletin(Request $request)
     {
       $profe = Profesore::find($request->id_profe)->nombre;
       Boletine::create(['asunto' => $request->asunto, 'contenido' => $request->contenido, 'propietario' => $profe, 'estado' => 0]);
-      return "ok";
+      // return "ok";
     }
 
     public function obtener_horario(Request $request){
@@ -105,7 +105,7 @@ class ProfesorController extends Controller
 	    $perfil->nombre=$request->nombre;
 	    $perfil->telefono=$request->telefono;
 	    $perfil->save(); //se guarda en la base de datos todos los valores de la variable
-	    return "ok";
+	    // return "ok";
   	}
 
  	public function index()

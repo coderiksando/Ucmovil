@@ -14,21 +14,26 @@ export class IngresoVersionAsignaturaPage implements OnInit {
 
   titulo = 'Ingreso de versiones de ramos';
   botonRegresoCancelar = false;
+  actualYear: number;
 
-  versionRamo = [{
-    id_ramo       : Number,
-    id_asignatura : String,
-    id_profesor   : Number,
-    year          : Number,
-    semestre      : Number
-  }];
+  versionRamo = {
+    id_ramo       : Number(),
+    id_asignatura : String(),
+    id_profesor   : Number(),
+    year          : Number(),
+    semestre      : Number()
+  };
 
   constructor(  public modalController: ModalController, public profesoresService: ProfesoresService,
                 public ramosService: RamosService ) { }
 
   async ngOnInit() {
     await this.ramosService.peticionRamos();
-    // await this.obtenerRamos();
+    await this.profesoresService.peticionProfesores();
+    this.actualYear = new Date().getFullYear();
+    this.versionRamo.year = this.actualYear;
+    this.versionRamo.semestre = 1;
+    console.log(this.versionRamo.semestre);
   }
 
   async modalProfesor() {
@@ -46,7 +51,10 @@ export class IngresoVersionAsignaturaPage implements OnInit {
   }
 
   envioVersionRamo() {
-    console.log('envio version ramo');
+    console.log(this.versionRamo);
+  }
+  verSemestre() {
+    console.log(this.versionRamo.semestre);
   }
 
 }

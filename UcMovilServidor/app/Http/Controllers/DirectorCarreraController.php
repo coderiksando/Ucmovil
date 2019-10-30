@@ -26,13 +26,28 @@ class DirectorCarreraController extends Controller
   public function mostrar_asignatura(Request $request)  //entrega todos los datos de las asignaturas, buscando el tipo de malla
   {
     $busqueda_malla = $request->id_malla;
-    $asignaturas["asignatura"] = DB::table('asignaturas')
-                                    ->join('mallas', 'asignaturas.id_malla','mallas.id_malla')
-                                    ->select('asignaturas.*')
-                                    ->where('asignaturas.id_malla',$busqueda_malla)
-                                    ->orderBy('nombre')
-                                    ->get();  //conexion a la base de datos y ordenados
-    return response()->json($asignaturas);  //entrega datos en forma de objeto json
+    if ($busqueda_malla == NULL) {
+      $asignaturas  = DB::table('asignaturas')
+                      ->select('asignaturas.*')
+                      ->orderBy('nombre')
+                      ->get();  //conexion a la base de datos y ordenados
+      $mallas       = DB::table('mallas')
+                      ->select('mallas.*')
+                      ->orderBy('id_malla')
+                      ->get();
+      
+      return response()->json(array('asignatura' => $asignaturas, 'mallas' => $mallas));  //entrega datos en forma de objeto json
+    }
+    else {
+      $asignaturas["asignatura"] = DB::table('asignaturas')
+                                      ->join('mallas', 'asignaturas.id_malla','mallas.id_malla')
+                                      ->select('asignaturas.*')
+                                      ->where('asignaturas.id_malla',$busqueda_malla)
+                                      ->orderBy('nombre')
+                                      ->get();  //conexion a la base de datos y ordenados
+
+      return response()->json($asignaturas);  //entrega datos en forma de objeto json
+    }
   }
 
   public function anadir_asignatura(Request $request)
@@ -46,7 +61,7 @@ class DirectorCarreraController extends Controller
     $asignatura->posicion_y=$request->posicion_y;
     $asignatura->id_malla=$request->id_malla;
     $asignatura->save(); //se guarda en la base de datos todos los valores de la variable
-    return "ok";
+    // return "ok";
   }
 
   public function modificar_asignatura(Request $request)
@@ -69,18 +84,18 @@ class DirectorCarreraController extends Controller
           'posicion_y'=>$posicion_y,
           'id_malla'=>$id_malla
         ]);
-    return "ok";
+    // return "ok";
   }
 
   public function borrar_asignatura(Request $request)
   {
     $id_asignatura=$request->id_asignatura; //se ingresan los datos de los request
     DB::table("asignaturas")->where('id_asignatura',$id_asignatura)->delete();  //se borra el dato de la tabla
-    return "ok";
+    // return "ok";
   }
 
   public function mostrar_profesores(Request $request){ //se busca un profesor tanto con id_profesor o sin id_profesor
-    if ($request->id_profesor=="") {
+    if ($request->id_profesor == NULL) {
       $profesores["profesor"] =   DB::table('profesores')
                                       ->orderBy('nombre')
                                       ->orderBy('especialidad')
@@ -104,7 +119,7 @@ class DirectorCarreraController extends Controller
                                   'year' => $request->year,
                                   'semestre' => $request->semestre]);
     $ramo->save();
-    return "ok";
+    // return "ok";
   }
 
   public function mostrar_version_ramo(Request $request){ //buscamos un registro de version ramo, el nombre del profesor al cual está vinculado y la asignatura.
@@ -125,7 +140,7 @@ class DirectorCarreraController extends Controller
   public function borrar_version_ramo(Request $request){  //borra un registro de version ramo
     $id_borrar= $request->id_ramo;
     DB::table("version_ramos")->where('id_ramo',$id_borrar)->delete();
-    return "ok";
+    // return "ok";
   }
 
   public function busqueda_sala(Request $request){  //se hace una busqueda en horarios, dependiendo el numero de sala y dia
@@ -146,7 +161,7 @@ class DirectorCarreraController extends Controller
                                   'sala' => $request->sala,
                                   'estado' => $request->estado]);
     $horario->save();
-    return "ok";
+    // return "ok";
   }
     public function Mensajeria(Request $request)  //busca los registros de secretaria
     {

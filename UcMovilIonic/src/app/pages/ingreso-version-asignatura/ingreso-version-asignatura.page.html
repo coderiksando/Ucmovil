@@ -7,16 +7,6 @@
       <ion-col>
         <form #formulario="ngForm" (ngSubmit)="envioVersionRamo()">
           <ion-list>
-            <!-- <ion-item lines="none">
-              <ion-label>Titulo:</ion-label>
-            </ion-item>
-            <ion-item lines="none" class="borde">
-              <ion-textarea  type="text" name="titulo" type="text"
-                          [(ngModel)]="versionRamo.id_asignatura" required
-                          placeholder="Escriba titular" 
-                          autoGrow>
-              </ion-textarea>
-            </ion-item> -->
             <ion-item lines="none">
               <ion-label>Ramo:</ion-label>
               <ion-button (click)="modalRamo()">
@@ -30,10 +20,18 @@
               </ion-button>
             </ion-item>
             <ion-item lines="none">
-              <ion-label>Año:</ion-label>
+              <ion-label>Selección de año:</ion-label>
+              <ion-select [(ngModel)]="versionRamo.year" [value]="versionRamo.year" okText="Elegir" cancelText="Cancelar" name="Selección de año" >
+                <ion-select-option [value]="actualYear"> {{ actualYear }} </ion-select-option>
+                <ion-select-option [value]="actualYear+1"> {{ actualYear + 1 }}</ion-select-option>
+              </ion-select>
             </ion-item>
             <ion-item lines="none">
-              <ion-label>Semestre:</ion-label>
+              <ion-label>Selección de semestre:</ion-label>
+              <ion-select [(ngModel)]="versionRamo.semestre" [value]="versionRamo.semestre" okText="Elegir" cancelText="Cancelar" name="Selección de semestre" >
+                <ion-select-option [value]=1> 1 </ion-select-option>
+                <ion-select-option [value]=2> 2 </ion-select-option>
+              </ion-select>
             </ion-item>
             <br>
             <br>

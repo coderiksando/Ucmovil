@@ -45,7 +45,7 @@ class SecretariaController extends Controller
     $noticia->propietario=$request->propietario;
     $noticia->tag=$request->tag;
     $noticia->save();
-    return "ok";
+    // return "ok";
 
   }
 
@@ -62,7 +62,7 @@ class SecretariaController extends Controller
       'estado'=>$estado,
       'propietario'=>$propietario
     ]);
-    return "ok";
+    // return "ok";
   }
 
   public function Mensajeria(Request $request)
@@ -92,7 +92,7 @@ class SecretariaController extends Controller
     DB::table("noticias")->where('id_noticia',$id_noticia)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
 
   public function rechazar(Request $request)
@@ -102,7 +102,7 @@ class SecretariaController extends Controller
     DB::table("noticias")->where('id_noticia',$id_noticia)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
 
   public function solicitudes(Request $request)
@@ -119,7 +119,7 @@ class SecretariaController extends Controller
     DB::table("solicitudes")->where('id',$id)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
   public function aceptarsolicitud(Request $request)
   {
@@ -128,7 +128,7 @@ class SecretariaController extends Controller
     DB::table("solicitudes")->where('id',$id)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
 
 
@@ -148,7 +148,7 @@ class SecretariaController extends Controller
     DB::table("boletines")->where('id',$id)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
   public function aceptar_horario(Request $request)
   {
@@ -159,7 +159,7 @@ class SecretariaController extends Controller
     DB::table("horarios")->where('id_ramo',$id_ramo)->where('modulo',$modulo)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
   public function rechazar_horario(Request $request)
   {
@@ -169,7 +169,7 @@ class SecretariaController extends Controller
     DB::table("horarios")->where('id_ramo',$id_ramo)->update([
       'estado'=> $estado
     ]);
-    return "ok";
+    // return "ok";
   }
   public function mostrar_horarios()
   {

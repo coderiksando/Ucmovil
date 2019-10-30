@@ -24,7 +24,7 @@ class CreateHorariosTable extends Migration
             $table->foreign('id_ramo')->references('id_ramo')->on('version_ramos');
         });
         DB::statement('ALTER TABLE horarios ADD CONSTRAINT horarios_valores_estado
-        CHECK (estado = "Rechazada" and estado = "Aceptada" and estado = "Revision");');
+        CHECK (estado = "Rechazada" or estado = "Aceptada" or estado = "Revision");');
     }
 
     /**

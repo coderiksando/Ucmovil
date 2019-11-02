@@ -9,13 +9,13 @@
           <ion-list>
             <ion-item lines="none">
               <ion-label>Ramo:</ion-label>
-              <ion-button (click)="modalRamo()">
+              <ion-button (click)="modalRamo()" required>
                 <ion-icon name="bookmarks"></ion-icon>
               </ion-button>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Profesor:</ion-label>
-              <ion-button (click)="modalProfesor()">
+              <ion-button (click)="modalProfesor()" required>
                 <ion-icon name="person-add"></ion-icon>
               </ion-button>
             </ion-item>
@@ -35,7 +35,8 @@
             </ion-item>
             <br>
             <br>
-            <ion-button shape="round" expand="full" type="submit" [disabled]="formulario.invalid">
+            <ion-button shape="round" expand="full" type="submit"
+                        [disabled]="!versionRamo.id_asignatura || !versionRamo.id_profesor">
               Enviar
             </ion-button>
             <br>

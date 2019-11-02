@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { ModalProfesorPage } from '../../modals/modal-profesor/modal-profesor.page';
 import { ModalRamoPage } from '../../modals/modal-ramo/modal-ramo.page';
 import { ProfesoresService } from '../../services/profesores.service';
 import { RamosService } from '../../services/ramos.service';
+import { HttpClient } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-ingreso-version-asignatura',
@@ -17,14 +19,15 @@ export class IngresoVersionAsignaturaPage implements OnInit {
   actualYear: number;
 
   versionRamo = {
-    id_asignatura : String,
-    id_profesor   : Number,
+    id_asignatura : String(),
+    id_profesor   : Number(),
     year          : Number(),
     semestre      : Number()
   };
 
   constructor(  public modalController: ModalController, public profesoresService: ProfesoresService,
-                public ramosService: RamosService ) { }
+                public ramosService: RamosService, public alertController: AlertController,
+                public http: HttpClient, public loginService: LoginService ) { }
 
   async ngOnInit() {
     await this.ramosService.peticionRamos();
@@ -38,6 +41,11 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalProfesorPage
     });
+    modal.onDidDismiss().then((dataProfesor: any) => {
+      if (dataProfesor.data.extraccion) {
+        this.versionRamo.id_profesor = dataProfesor.data.extraccion.id;
+      }
+    });
     return await modal.present();
   }
 
@@ -45,11 +53,35 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalRamoPage
     });
+    modal.onDidDismiss().then((dataRamo: any) => {
+      if (dataRamo.data.extraccion) {
+        this.versionRamo.id_asignatura = dataRamo.data.extraccion.id_asignatura;
+      }
+    });
     return await modal.present();
   }
 
-  envioVersionRamo() {
-    console.log(this.versionRamo);
+  async envioVersionRamo() {
+    let url = this.loginService.urlServer;
+    url += 'd_escuela/anadir_profesor_ramo';
+    url += '?id_asignatura=' + this.versionRamo.id_asignatura;
+    url += '&id_profesor=' + this.versionRamo.id_profesor;
+    url += '&year=' + this.versionRamo.year + '&semestre=' + this.versionRamo.semestre;
+    this.http.get(url).subscribe(async (response: any) => {
+      const alert = await this.alertController.create({
+        header: 'Éxito',
+        message: 'Se ha ingresado la version de ramo y profesor correctamente.',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }, async err => {
+      const alert = await this.alertController.create({
+        header: 'Lo sentimos',
+        message: 'La versión de asignatura no ha sido ingresada por errores internos, inténtelo nuevamente.',
+        buttons: ['OK']
+      });
+      await alert.present();
+    });
   }
 
 }

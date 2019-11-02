@@ -7,7 +7,7 @@ import { LoginService } from './login.service';
 })
 export class ProfesoresService {
 
-  profesores = [];
+  profesores: [];
 
   constructor( private http: HttpClient, private loginService: LoginService ) { }
 

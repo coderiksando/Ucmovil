@@ -1,9 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>ModalProfesor</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="primary" translucent>
+    <ion-buttons slot="end" >
+      <ion-button (click)="cerrarModal()">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+    <ion-title> Elección de profesor </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item *ngFor="let profesor of this.profesoresService.profesores.profesor"
+              (click)="seleccionProfesor(profesor)">
+      <ion-label>{{ profesor.nombre }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

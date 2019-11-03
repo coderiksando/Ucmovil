@@ -24,6 +24,11 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
+        icon: 'stats',
+        name: 'Notas asignatura',
+        redirectTo: '/notas-alumnos'
+      },
+      {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'

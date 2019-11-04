@@ -1,0 +1,29 @@
+<app-menu></app-menu>
+<app-header [titulo]="titulo" [botonRegresoCancelar]="botonRegresoCancelar"></app-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item lines="none">
+    <ion-label>Seleccionar malla:</ion-label>
+    <ion-select [(ngModel)]="valorMalla" okText="Elegir" cancelText="Cancelar" name="nombreMalla"
+                (ionFocus)="busquedaAsignaturaMalla($event)" required>
+      <div *ngFor="let item of mallas">
+        <ion-select-option *ngIf="item.id_malla" value="{{item.id_malla}}">
+          {{item.id_malla}}
+        </ion-select-option>
+      </div>
+    </ion-select>
+  </ion-item>
+  <br>
+  
+  <div class="box">
+    <ion-toolbar color="primary">
+      <ion-title>Title Only</ion-title>
+    </ion-toolbar>
+    <ion-list>
+      <ion-item *ngFor="let item of this.versionRamo">
+        <ion-label>{{item.nombre_asignatura}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

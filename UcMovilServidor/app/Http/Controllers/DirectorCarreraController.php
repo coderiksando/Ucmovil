@@ -163,25 +163,32 @@ class DirectorCarreraController extends Controller
     $horario->save();
     // return "ok";
   }
-    public function Mensajeria(Request $request)  //busca los registros de secretaria
-    {
-      $ProfesoresResultado["profesores"] = DB::table('secretarias')->get();
+  public function consultaTotalMallas(){
+    $mallas["mallas"] = DB::table('mallas')
+                          ->select('mallas.*')
+                          ->orderBy('mallas.id_malla')
+                          ->get();
+    return $mallas;
+  }
+  public function Mensajeria(Request $request)  //busca los registros de secretaria
+  {
+    $ProfesoresResultado["profesores"] = DB::table('secretarias')->get();
 
-      return response()->json($ProfesoresResultado);
-    }
-    public function MensajeriaE(Request $request) //busca los registros de profesor
-    {
-      $ProfesoresResultado["profesores"] = DB::table('profesores')->get();
+    return response()->json($ProfesoresResultado);
+  }
+  public function MensajeriaE(Request $request) //busca los registros de profesor
+  {
+    $ProfesoresResultado["profesores"] = DB::table('profesores')->get();
 
-      return response()->json($ProfesoresResultado);
-    }
-    public function Mensajes(Request $request)  //busca el chat de x persona vinculada
-    {
-      $MensajesChat["chat"] = DB::table('chat') ->where('id_remitente', $request->id_remitente)
-                                                ->where('id_destinatario', $request->id_destinatario)
-                                                ->orwhere('id_remitente', $request->id_destinatario)
-                                                ->where('id_destinatario', $request->id_remitente)->get();
+    return response()->json($ProfesoresResultado);
+  }
+  public function Mensajes(Request $request)  //busca el chat de x persona vinculada
+  {
+    $MensajesChat["chat"] = DB::table('chat') ->where('id_remitente', $request->id_remitente)
+                                              ->where('id_destinatario', $request->id_destinatario)
+                                              ->orwhere('id_remitente', $request->id_destinatario)
+                                              ->where('id_destinatario', $request->id_remitente)->get();
 
-      return response()->json($MensajesChat);
-    }
+    return response()->json($MensajesChat);
+  }
 }

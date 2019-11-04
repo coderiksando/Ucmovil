@@ -19,6 +19,8 @@ const routes: Routes = [
   { path: 'modal-ramo', loadChildren: './modals/modal-ramo/modal-ramo.module#ModalRamoPageModule' },
   // pagina de vista de notas de alumnos
   { path: 'notas-alumnos', loadChildren: './pages/notas-alumnos/notas-alumnos.module#NotasAlumnosPageModule' },
+  // pagina de asignación de salas para el rol de director y secretaria
+  { path: 'asignacion-sala', loadChildren: './pages/asignacion-sala/asignacion-sala.module#AsignacionSalaPageModule' },
 
 ];
 

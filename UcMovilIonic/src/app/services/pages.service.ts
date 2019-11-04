@@ -76,6 +76,11 @@ export class PagesService  {
         redirectTo: '/asignacion-profesores-version-ramos'
       },
       {
+        icon: 'compass',
+        name: 'Asignación de salas',
+        redirectTo: '/asignacion-sala'
+      },
+      {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'
@@ -95,6 +100,11 @@ export class PagesService  {
         icon: 'paper',
         name: 'Ingreso de noticias',
         redirectTo: '/ingreso-noticia'
+      },
+      {
+        icon: 'compass',
+        name: 'Asignación de salas',
+        redirectTo: '/asignacion-sala'
       },
       {
         icon: 'power',

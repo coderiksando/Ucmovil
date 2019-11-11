@@ -35,14 +35,8 @@ class HomeController extends Controller
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
         foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-            echo $user->ano_ingreso. ",";
-            echo $user->ano_nacimiento. ",";
-            echo $user->direccion. ",";
+            return response()->json($usuario);
         }
-        return;
     }
 
     public function Datos_s(Request $request){
@@ -50,11 +44,8 @@ class HomeController extends Controller
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
         foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
+            return response()->json($usuario);
         }
-        return;
     }
 
     public function Datos_d(Request $request){
@@ -62,12 +53,8 @@ class HomeController extends Controller
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
         foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-            echo $user->especialidad. ",";
+            return response()->json($usuario);
         }
-        return;
     }
 
     public function datos_p(Request $request){
@@ -75,12 +62,8 @@ class HomeController extends Controller
         $tipo = $request->tipo;
         $usuario = DB::table($tipo)->where('id', $id)->get();
         foreach($usuario as $user){
-            echo $user->nombre. ",";
-            echo $user->apodo. ",";
-            echo $user->telefono. ",";
-            echo $user->especialidad. ",";
+            return response()->json($usuario);
         }
-        return;
     }
 
     public function CambioC(Request $request){

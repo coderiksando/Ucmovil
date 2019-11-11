@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'ingreso-version-asignatura', loadChildren: './pages/ingreso-version-asignatura/ingreso-version-asignatura.module#IngresoVersionAsignaturaPageModule' },
   { path: 'asignacion-profesores-version-ramos', loadChildren: './pages/asignacion-profesores-version-ramos/asignacion-profesores-version-ramos.module#AsignacionProfesoresVersionRamosPageModule' },
   { path: 'modal-profesor', loadChildren: './modals/modal-profesor/modal-profesor.module#ModalProfesorPageModule' },
-  { path: 'modal-ramo', loadChildren: './modals/modal-ramo/modal-ramo.module#ModalRamoPageModule' },
+  { path: 'modal-ramo', loadChildren: './modals/modal-ramo/modal-ramo.module#ModalRamoPageModule' },  { path: 'ramos-impartidos', loadChildren: './pages/ramos-impartidos/ramos-impartidos.module#RamosImpartidosPageModule' },
+  { path: 'ingreso-ponderaciones', loadChildren: './pages/ingreso-ponderaciones/ingreso-ponderaciones.module#IngresoPonderacionesPageModule' },
+
 
 
 ];

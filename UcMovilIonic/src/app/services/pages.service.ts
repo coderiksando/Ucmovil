@@ -43,6 +43,11 @@ export class PagesService  {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'
+      },
+      {
+        icon: 'business',
+        name: 'Ramos Impartidos',
+        redirectTo: '/ramos-impartidos'
       }
     );
   }

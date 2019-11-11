@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   lista = [];
 
   constructor(private menu: MenuController, private pagesService: PagesService,
-              private loginService: LoginService, private router: Router, private platform: Platform ) { }
+              public loginService: LoginService, private router: Router, private platform: Platform ) { }
 
   ngOnInit() {
     this.lista = this.pagesService.componentes;

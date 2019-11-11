@@ -23,13 +23,15 @@ class ProfesorController extends Controller
 
     public function mostrar_impartidos(Request $request)  //entrega todos los datos de los ramos impartidos
     {
-	    $impartidos["impartidos"] =   VersionRamo::all()->where('id_profesor', $request->id);  //conexion a la base de datos y ordenados
-      return response()->json($impartidos);  //entrega datos en forma de json
+      $impartidos =   DB::table('version_ramos')
+                                    ->join('asignaturas', ['version_ramos.id_asignatura' => 'asignaturas.id_asignatura'])
+                                    ->select('version_ramos.id_ramo', 'version_ramos.id_asignatura', 'version_ramos.year', 'asignaturas.nombre', 'version_ramos.semestre')->get();
+      return response()->json($impartidos);
 	  }
 
     public function mostrar_ponderaciones(Request $request)  //entrega todos los datos de las ponderaciones
     {
-      $ponderaciones["ponderaciones"] = PonderacionesRamo::all()->where('id_ramo', $request->id)->values();  //conexion a la base de datos y ordenados
+      $ponderaciones = PonderacionesRamo::all()->where('id_ramo', $request->id)->values();  //conexion a la base de datos y ordenados
       return response()->json($ponderaciones);  //entrega datos en forma de json
     }
 
@@ -93,7 +95,7 @@ class ProfesorController extends Controller
           $ponderacion->P_nota = $request->$P_nota;
           $ponderacion->save();
         }
-        return "Success";
+        return response(200)->header('Content-Type', 'text/plain');;
     }
 
    	public function modificar_perfil(Request $request)

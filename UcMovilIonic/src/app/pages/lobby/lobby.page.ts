@@ -12,7 +12,7 @@ export class LobbyPage implements OnInit {
   botonRegresoCancelar = true;
   respuesta: any;
 
-  constructor( private menuComponent: MenuComponent, private newsService: NewsService) { }
+  constructor( private menuComponent: MenuComponent, public newsService: NewsService) { }
 
   ngOnInit() {
   }

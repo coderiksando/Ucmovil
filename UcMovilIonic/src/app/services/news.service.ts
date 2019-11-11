@@ -41,6 +41,7 @@ export class NewsService {
     let url = this.loginService.urlServer;
     url += '/secretaria/agregar_noticia' + '?titulo=' + noticia.titulo + '&texto='
         +   noticia.texto +  '&estado=' +   noticia.estado + '&propietario=' + noticia.propietario;
+    console.log(url);
     this.httpClient.get(url).subscribe(async (response: any) => {
         this.respuestaEnvio = response;
         const alert = await this.alertController.create({

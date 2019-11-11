@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor(private loginService: LoginService, public httpclient: HttpClient, 
+  constructor(private loginService: LoginService, public httpclient: HttpClient,
               public newsService: NewsService) {
 
   }

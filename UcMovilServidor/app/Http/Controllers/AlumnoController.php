@@ -78,19 +78,16 @@ class AlumnoController extends Controller
       $Nombres = DB::table('alumnos')->where('id', $request->id)->get();
 
       foreach($Nombres as $nombre){
-        echo $nombre->nombre;
+        return response()->json($nombre->nombre);
       }
-      return;
     }
     public function ConsultaMalla(Request $request)
     {
       $Malla = DB::table('alumnos')->where('id', $request->id)->get();
 
       foreach ($Malla as $key) {
-        echo $key->id_malla;
+        return response()->json($key->id_malla);
       }
-      //echo $Malla->id_malla;
-      return ;
     }
     public function Solicitud(Request $request)
     {

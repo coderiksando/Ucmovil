@@ -27,8 +27,12 @@
 
 ion-card{
     width: 100% !important;
-  }
+}
 
-.iteminput {
-    color: aqua;
+.sala-modal-css .modal-wrapper{
+    height: 90%;
+    width: 90%;
+    top: 5%;
+    position: absolute; 
+    display: block;  
 }

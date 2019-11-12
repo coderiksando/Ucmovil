@@ -76,9 +76,9 @@ export class PagesService  {
         redirectTo: '/ingreso-version-asignatura'
       },
       {
-        icon: 'person-add',
-        name: 'Asignación de profesores a ramos',
-        redirectTo: '/asignacion-profesores-version-ramos'
+        icon: 'compass',
+        name: 'Asignación de salas',
+        redirectTo: '/asignacion-sala'
       },
       {
         icon: 'power',
@@ -100,6 +100,11 @@ export class PagesService  {
         icon: 'paper',
         name: 'Ingreso de noticias',
         redirectTo: '/ingreso-noticia'
+      },
+      {
+        icon: 'compass',
+        name: 'Asignación de salas',
+        redirectTo: '/asignacion-sala'
       },
       {
         icon: 'power',

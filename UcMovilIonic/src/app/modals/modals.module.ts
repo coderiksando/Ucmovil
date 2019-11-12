@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ModalProfesorPageModule } from './modal-profesor/modal-profesor.module';
 import { ModalRamoPageModule } from './modal-ramo/modal-ramo.module';
+import { ModalSalaPageModule } from './modal-sala/modal-sala.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ModalRamoPageModule } from './modal-ramo/modal-ramo.module';
   imports: [
     ModalProfesorPageModule,
     ModalRamoPageModule,
+    ModalSalaPageModule,
     RouterModule,
     CommonModule,
     IonicModule

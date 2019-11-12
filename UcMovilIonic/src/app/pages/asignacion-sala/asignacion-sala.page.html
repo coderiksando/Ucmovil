@@ -18,11 +18,43 @@
   
   <div class="box">
     <ion-toolbar color="primary">
-      <ion-title>Title Only</ion-title>
+      <ion-title>Selección asignatura</ion-title>
+
+      <ion-buttons slot="end">
+        <ion-searchbar placeholder="Busqueda asignatura" [hidden]="!showMe" (ionInput)="busquedaEvento($event)">
+        </ion-searchbar>
+        <ion-button *ngIf="busqueda" fill="outline" (click)="search()">
+            <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      
     </ion-toolbar>
-    <ion-list>
-      <ion-item *ngFor="let item of this.versionRamo">
-        <ion-label>{{item.nombre_asignatura}}</ion-label>
+    <ion-list class="ion-no-padding">
+      <ion-item color="dark">
+        <ion-grid fixed>
+            <ion-row>
+              <ion-col class="boxWhite" size="7">Nombre Asignatura</ion-col>
+              <ion-col class="boxWhite" size="2.5">Año A</ion-col>
+              <ion-col class="boxWhite" size="2.5">Sem A</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="boxWhite" size="3">Id A</ion-col>
+              <ion-col class="boxWhite" size="9">Nombre Profesor</ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+      <ion-item *ngFor="let item of this.versionRamo" (click)="asignacionSala( item )">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="7">{{item.nombre_asignatura}}</ion-col>
+            <ion-col size="2.5">{{item.year}}</ion-col>
+            <ion-col size="2.5">{{item.semestre}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">{{item.id_asignatura}}</ion-col>
+            <ion-col size="9">{{item.nombre_profesor}}</ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ion-list>
   </div>

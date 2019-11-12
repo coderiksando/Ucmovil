@@ -127,7 +127,7 @@ class DirectorCarreraController extends Controller
     $version_ramo["version_ramo"] = DB::table('version_ramos')
                                     ->join('profesores', 'version_ramos.id_profesor','profesores.id')
                                     ->join('asignaturas', 'version_ramos.id_asignatura','asignaturas.id_asignatura')
-                                    ->select('version_ramos.*',
+                                    ->select('version_ramos.*', 'profesores.*', 'asignaturas.*',
                                     'profesores.nombre as nombre_profesor',
                                     'asignaturas.nombre as nombre_asignatura')
                                     ->where('asignaturas.id_malla',$busqueda_malla)
@@ -155,12 +155,14 @@ class DirectorCarreraController extends Controller
   }
 
   public function enviar_horario(Request $request){ //se envian los horarios en forma iterativa para crear todas las salas.
-    $horario = Horario::create([  'id_ramo' => $request->id_ramo,
-                                  'modulo' => $request->modulo,
-                                  'dia' => $request->dia,
-                                  'sala' => $request->sala,
-                                  'estado' => $request->estado]);
-    $horario->save();
+    for ($i=0; $i < $request->cantidadCorrelativa ; $i++) { 
+      $horario = Horario::create([  'id_ramo' => $request->id_ramo,
+                                    'modulo' => ($request->modulo + $i),
+                                    'dia' => $request->dia,
+                                    'sala' => $request->sala,
+                                    'estado' => $request->estado]);
+      $horario->save();
+    }
     // return "ok";
   }
   public function consultaTotalMallas(){

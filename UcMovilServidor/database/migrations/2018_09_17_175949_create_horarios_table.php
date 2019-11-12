@@ -22,6 +22,7 @@ class CreateHorariosTable extends Migration
             $table->timestamps();
             $table->primary(['id_ramo', 'dia', 'modulo']);
             $table->foreign('id_ramo')->references('id_ramo')->on('version_ramos');
+            $table->unique(['modulo', 'dia', 'sala']);
         });
         DB::statement('ALTER TABLE horarios ADD CONSTRAINT horarios_valores_estado
         CHECK (estado = "Rechazada" or estado = "Aceptada" or estado = "Revision");');

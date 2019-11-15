@@ -16,7 +16,7 @@ export class RamosService {
     url += 'd_escuela/mostrar_asignatura';
     this.http.get(url).subscribe((response: any) => {
       this.ramos = response;
-      console.log(this.ramos);
+      // console.log(this.ramos);
     }, err => {
       console.log(err);
     });

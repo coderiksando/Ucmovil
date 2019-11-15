@@ -16,7 +16,7 @@ export class ProfesoresService {
     url += 'd_escuela/mostrar_profesor';
     this.http.get(url).subscribe((response: any) => {
       this.profesores = response;
-      console.log(this.profesores);
+      // console.log(this.profesores);
     }, err => {
       console.log(err);
     });

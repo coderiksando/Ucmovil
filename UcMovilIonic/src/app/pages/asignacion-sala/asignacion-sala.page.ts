@@ -49,7 +49,7 @@ export class AsignacionSalaPage implements OnInit {
         this.httpClient.get(url).subscribe((response: any) => {
           this.versionRamo = response.version_ramo;
           this.versionRamoArrayOriginal = JSON.parse(JSON.stringify(this.versionRamo));
-          console.log(this.versionRamoArrayOriginal);
+          // console.log(this.versionRamoArrayOriginal);
         }, err => {
           console.log(err);
         });

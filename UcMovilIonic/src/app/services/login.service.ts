@@ -31,7 +31,7 @@ export class LoginService {
       cssClass: 'custom-class custom-loading'
     }).then(a => {
       a.present().then(() => {
-        console.log('esperando conexión...');
+        // console.log('esperando conexión...');
       });
     });
   }
@@ -44,7 +44,7 @@ export class LoginService {
       buttons: [{
         text: 'Ayuda',
         handler: () => {
-          console.log('Aiuuuuda por favoooor');
+          // console.log('Aiuuuuda por favoooor');
         }}, 'Reintentar']
     });
     await alert.present();

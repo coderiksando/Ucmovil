@@ -47,8 +47,8 @@ export class IngresoPonderacionesPage implements OnInit {
       if (this.arrayNum.length >= 10) {
         this.maxLen = true;
       }
-      console.log(this.arrayPonderaciones);
-      console.log(this.arrayNum);
+      // console.log(this.arrayPonderaciones);
+      // console.log(this.arrayNum);
     });
   }
 
@@ -108,7 +108,7 @@ export class IngresoPonderacionesPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancel');
+            // console.log('Cancel');
             }
         }
     ]
@@ -129,7 +129,7 @@ export class IngresoPonderacionesPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancel');
+            // console.log('Cancel');
             }
         }
     ]
@@ -149,7 +149,7 @@ export class IngresoPonderacionesPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancel');
+            // console.log('Cancel');
             }
         }
     ]

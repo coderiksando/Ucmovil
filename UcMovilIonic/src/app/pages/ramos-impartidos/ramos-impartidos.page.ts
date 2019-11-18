@@ -42,6 +42,7 @@ export class RamosImpartidosPage implements OnInit {
         {
           text: 'Notas',
           handler: () => {
+            this.router.navigate(['/ingreso-notas'], { queryParams: { id: this.id, nombre: this.nombre } });
             }
         }
     ]

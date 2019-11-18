@@ -14,11 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    /*public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('director');
-    }*/
+    public function __construct()
+  {
+      $this->middleware('cors');
+  }
 
     /**
      * Show the application dashboard.

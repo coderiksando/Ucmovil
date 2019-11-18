@@ -9,6 +9,12 @@ use App\RamosActuale;
 
 class AsignaturaController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('cors');
+  }
+
+
   public function index()
   {
       return view('DirectorIndex');   //se debe cambiar la vista

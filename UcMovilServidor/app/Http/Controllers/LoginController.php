@@ -10,6 +10,11 @@ use App\User;
 
 class LoginController extends Controller
 {
+	public function __construct()
+  {
+      $this->middleware('cors');
+  }
+
     public function Login(){
     	$credentials = $this->validate(request(),[
     		'email' => 'required|string',

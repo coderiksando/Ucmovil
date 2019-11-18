@@ -1,0 +1,8 @@
+<app-header titulo= "Notas de: {{nombre}}"></app-header>
+
+
+<ion-content class="ion-padding">
+  <ion-list>
+      <ion-button *ngFor="let alumno of alumnos" color="primary" expand = "block" size ="medium">{{alumno.nombre}}</ion-button>
+  </ion-list>
+</ion-content>

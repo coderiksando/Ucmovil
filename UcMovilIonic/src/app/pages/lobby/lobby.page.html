@@ -12,25 +12,27 @@
         </ion-refresher-content>
     </ion-refresher>
     
-    <ion-card mode="ios" *ngFor="let noticia of newsService.noticiaRespuesta.noticias">
-        <ion-card-header>
-            <ion-card-title> <ion-icon name="paper"></ion-icon> {{noticia.titulo}} </ion-card-title>
-            <ion-card-subtitle> 
-                <ion-icon name="person"></ion-icon>
-                Escrito por: <b>{{noticia.propietario}}</b>
+    <div *ngIf="newsService.noticiaRespuesta">
+        <ion-card mode="ios" *ngFor="let noticia of newsService.noticiaRespuesta.noticias">
+            <ion-card-header>
+                <ion-card-title> <ion-icon name="paper"></ion-icon> {{noticia.titulo}} </ion-card-title>
+                <ion-card-subtitle> 
+                    <ion-icon name="person"></ion-icon>
+                    Escrito por: <b>{{noticia.propietario}}</b>
+                    <br>
+                    <ion-icon name="calendar"></ion-icon>
+                    {{getDate(noticia.updated_at)[2]}}-{{getDate(noticia.updated_at)[1]}}-{{getDate(noticia.updated_at)[0]}}
+                    <ion-icon name="time"></ion-icon>{{getTime(noticia.updated_at)}}
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                {{noticia.texto}}
                 <br>
-                <ion-icon name="calendar"></ion-icon>
-                {{getDate(noticia.updated_at)[2]}}-{{getDate(noticia.updated_at)[1]}}-{{getDate(noticia.updated_at)[0]}}
-                <ion-icon name="time"></ion-icon>{{getTime(noticia.updated_at)}}
-            </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-            {{noticia.texto}}
+            </ion-card-content>
             <br>
-        </ion-card-content>
-        <br>
-        <!-- <ion-img src="../../../assets/8.2 stan-lee.jpg" class="ion-padding"></ion-img> -->
-    </ion-card>
+            <!-- <ion-img src="../../../assets/8.2 stan-lee.jpg" class="ion-padding"></ion-img> -->
+        </ion-card>
+    </div>
     
     <!-- <ion-card mode="ios">
         <ion-item>

@@ -13,6 +13,7 @@ const routes: Routes = [
   // pagina de director y secretaria de ingreso de noticias
   { path: 'ingreso-noticia', loadChildren: './pages/ingreso-noticia/ingreso-noticia.module#IngresoNoticiaPageModule' },
   // pagina de director de ingreso de versiones de asignatura con profesor vinculado
+  // tslint:disable-next-line: max-line-length
   { path: 'ingreso-version-asignatura', loadChildren: './pages/ingreso-version-asignatura/ingreso-version-asignatura.module#IngresoVersionAsignaturaPageModule' },
   // modals vinculados a ingreso de versiones de asignatura (podrían ser utilizados en otra pagina)
   { path: 'modal-profesor', loadChildren: './modals/modal-profesor/modal-profesor.module#ModalProfesorPageModule' },
@@ -22,6 +23,10 @@ const routes: Routes = [
   // pagina de asignación de salas para el rol de director y secretaria
   { path: 'asignacion-sala', loadChildren: './pages/asignacion-sala/asignacion-sala.module#AsignacionSalaPageModule' },
   { path: 'modal-sala', loadChildren: './modals/modal-sala/modal-sala.module#ModalSalaPageModule' },
+  { path: 'ramos-impartidos', loadChildren: './pages/ramos-impartidos/ramos-impartidos.module#RamosImpartidosPageModule' },
+  // tslint:disable-next-line: max-line-length
+  { path: 'ingreso-ponderaciones', loadChildren: './pages/ingreso-ponderaciones/ingreso-ponderaciones.module#IngresoPonderacionesPageModule' },  { path: 'ingreso-notas', loadChildren: './pages/ingreso-notas/ingreso-notas.module#IngresoNotasPageModule' },
+
 
 
 ];

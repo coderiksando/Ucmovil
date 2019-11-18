@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Middleware\Profesor;
+use App\Http\Middleware\Cors;
 use App\VersionRamo;
 use App\PonderacionesRamo;
 use App\RamosActuale;
@@ -14,12 +15,13 @@ use Auth;
 
 class ProfesorController extends Controller
 {
-/*
+
   	public function __construct()
   	{
-    	$this->middleware('auth');      //revision del usuario conectado
-    	$this->middleware('profesor');  //cortador de paso para usuarios distintos a profesor
-  	}*/
+    	/*$this->middleware('auth');      //revision del usuario conectado
+      $this->middleware('profesor');  //cortador de paso para usuarios distintos a profesor*/
+      $this->middleware('cors');
+  	}
 
     public function mostrar_impartidos(Request $request)  //entrega todos los datos de los ramos impartidos
     {
@@ -39,7 +41,7 @@ class ProfesorController extends Controller
     {
       $AlumnosArray = DB::table('ramos_actuales')->select('id_alumno')->where('id_ramo', $request->id)->distinct()->get(); //obtiene la lista de alumnos pertenecientes a un ramo
 
-      $alumnos["alumnos"] =   DB::table('alumnos')->select('id','nombre')->whereIn('id', $AlumnosArray->pluck('id_alumno'))->get();  //obtiene los datos de cada alumno incluido en el AlumnoArray 
+      $alumnos =   DB::table('alumnos')->select('id','nombre')->whereIn('id', $AlumnosArray->pluck('id_alumno'))->get();  //obtiene los datos de cada alumno incluido en el AlumnoArray 
       return response()->json($alumnos);  //entrega datos en forma de json
     }
 

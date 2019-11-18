@@ -18,6 +18,11 @@ use App\Profesore;
 
 class DirectorCarreraController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('cors');
+  }
+
   public function index()
   {
       return view('DirectorIndex');

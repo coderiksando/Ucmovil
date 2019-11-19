@@ -56,8 +56,7 @@ export class LoginService {
     const alert = await this.alertController.create({
       header: 'Sin conexión',
       subHeader: 'Hemos tenido un error',
-      message: err.message,
-      // 'No hay conexión momentaneamente, intentelo otra vez',
+      message: 'No hay conexión momentaneamente, intentelo otra vez',
       buttons: ['Ok']
     });
     await alert.present();

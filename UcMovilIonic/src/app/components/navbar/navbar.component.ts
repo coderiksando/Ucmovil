@@ -20,7 +20,8 @@ export class NavbarComponent implements OnInit {
   constructor( private menuComponent: MenuComponent, private newsService: NewsService ) { }
 
   ngOnInit() {
-    this.noticiaArrayOriginal = JSON.parse(JSON.stringify(this.newsService.noticiaRespuesta.noticias));
+    // this.noticiaArrayOriginal = JSON.parse(JSON.stringify(this.newsService.noticiaRespuesta.noticias));
+    this.noticiaArrayOriginal = this.newsService.noticiaRespuesta.noticias.map( (x: any) => x);
   }
 
   clickMenu() {
@@ -36,7 +37,8 @@ export class NavbarComponent implements OnInit {
   }
 
   busquedaEvento(event) {
-    this.newsService.noticiaRespuesta.noticias = JSON.parse(JSON.stringify(this.noticiaArrayOriginal));
+    // this.newsService.noticiaRespuesta.noticias = JSON.parse(JSON.stringify(this.noticiaArrayOriginal));
+    this.newsService.noticiaRespuesta.noticias = this.noticiaArrayOriginal.map( (x: any) => x);
     this.noBorrar = [];
     this.borrar = [];
     let nNoticia = 0;
@@ -45,7 +47,7 @@ export class NavbarComponent implements OnInit {
         for (const elementoNoticia in noticia) {
           if (elementoNoticia !== 'tag' && elementoNoticia !== 'estado' &&
               elementoNoticia !== 'id_noticia' && elementoNoticia !== 'created_at') {
-            if (noticia[elementoNoticia].indexOf(event.target.value) >= 0) {
+            if (noticia[elementoNoticia].toLowerCase().indexOf(event.target.value.toLowerCase()) >= 0) {
               if (this.noBorrar[this.noBorrar.length - 1] !== nNoticia) {
                 this.noBorrar.push(nNoticia);
               }

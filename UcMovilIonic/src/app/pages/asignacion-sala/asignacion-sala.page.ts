@@ -49,7 +49,7 @@ export class AsignacionSalaPage implements OnInit {
         this.httpClient.get(url).subscribe((response: any) => {
           this.versionRamo = response.version_ramo;
           this.versionRamoArrayOriginal = JSON.parse(JSON.stringify(this.versionRamo));
-          console.log(this.versionRamoArrayOriginal);
+          // console.log(this.versionRamoArrayOriginal);
         }, err => {
           console.log(err);
         });
@@ -88,7 +88,7 @@ export class AsignacionSalaPage implements OnInit {
           if (elementoVRamo === 'nombre_asignatura' || elementoVRamo === 'id_asignatura' ||
               elementoVRamo === 'year' || elementoVRamo === 'semestre' ||
               elementoVRamo === 'nombre_profesor') {
-            if (vRamo[elementoVRamo].toString().indexOf(event.target.value.toString()) >= 0) {
+            if (vRamo[elementoVRamo].toString().toLowerCase().indexOf(event.target.value.toLowerCase().toString()) >= 0) {
               if (noBorrar[noBorrar.length - 1] !== nNoticia) {
                 noBorrar.push(nNoticia);
               }

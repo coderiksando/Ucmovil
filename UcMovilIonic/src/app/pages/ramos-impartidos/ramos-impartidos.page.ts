@@ -20,7 +20,7 @@ export class RamosImpartidosPage implements OnInit {
   ngOnInit() {
 
     this.ramosImpartidosServices.getRamosImpartidos().subscribe( (ramos: any[]) => {
-      console.log(ramos);
+      // console.log(ramos);
       this.ramosImpartidos = ramos;
     });
   }

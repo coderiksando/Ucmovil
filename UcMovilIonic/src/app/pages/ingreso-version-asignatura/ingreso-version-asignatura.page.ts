@@ -17,6 +17,8 @@ export class IngresoVersionAsignaturaPage implements OnInit {
   titulo = 'Ingreso de versiones de ramos';
   botonRegresoCancelar = false;
   actualYear: number;
+  nombreProfesor: string;
+  nombreAsignatura: string;
 
   versionRamo = {
     id_asignatura : String(),
@@ -44,6 +46,7 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     modal.onDidDismiss().then((dataProfesor: any) => {
       if (dataProfesor.data.extraccion) {
         this.versionRamo.id_profesor = dataProfesor.data.extraccion.id;
+        this.nombreProfesor = dataProfesor.data.extraccion.nombre;
       }
     });
     return await modal.present();
@@ -56,6 +59,7 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     modal.onDidDismiss().then((dataRamo: any) => {
       if (dataRamo.data.extraccion) {
         this.versionRamo.id_asignatura = dataRamo.data.extraccion.id_asignatura;
+        this.nombreAsignatura = dataRamo.data.extraccion.nombre;
       }
     });
     return await modal.present();

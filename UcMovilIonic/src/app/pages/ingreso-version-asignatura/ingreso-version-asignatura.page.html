@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 <app-header [titulo]="titulo" [botonRegresoCancelar]="botonRegresoCancelar"></app-header>
 
-<ion-content>
-  <ion-grid fixed class="ion-padding">
+<ion-content class="ion-padding">
+  <ion-grid fixed>
     <ion-row>
       <ion-col>
         <form #formulario="ngForm" (ngSubmit)="envioVersionRamo()">
@@ -45,4 +45,28 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <br>
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Detalles de ingresos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label>Profesor: {{nombreProfesor}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Asignatura: {{nombreAsignatura}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Año: {{versionRamo.year}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Semestre: {{versionRamo.semestre}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

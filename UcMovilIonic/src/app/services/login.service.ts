@@ -11,7 +11,9 @@ import { AppRoutingPreloaderService } from '../services/app-routing-preloader.se
 export class LoginService {
   datos: any;
   datosDetalle: any;
-  urlServer = 'http://localhost:8000/';
+  // urlServer = 'http://127.0.0.1:8000/';
+  // php artisan serve --host=192.168.0.6 --port=8000
+  urlServer = 'http://192.168.0.6:8000/';
   cordova: any;
   params = {};
   headers = {};
@@ -31,7 +33,7 @@ export class LoginService {
       cssClass: 'custom-class custom-loading'
     }).then(a => {
       a.present().then(() => {
-        console.log('esperando conexión...');
+        // console.log('esperando conexión...');
       });
     });
   }
@@ -44,13 +46,13 @@ export class LoginService {
       buttons: [{
         text: 'Ayuda',
         handler: () => {
-          console.log('Aiuuuuda por favoooor');
+          // console.log('Aiuuuuda por favoooor');
         }}, 'Reintentar']
     });
     await alert.present();
   }
 
-  async conectionErrorAlert() {
+  async conectionErrorAlert(err) {
     const alert = await this.alertController.create({
       header: 'Sin conexión',
       subHeader: 'Hemos tenido un error',
@@ -60,11 +62,11 @@ export class LoginService {
     await alert.present();
   }
 
-  async cargaLobby() {
+  cargaLobby() {
     this.routingService.preloadRoute('lobby');
   }
 
-  async accountDetails(datoUsuario) {
+  accountDetails(datoUsuario) {
     // console.log(datoUsuario.usuarios[0]);
     let tipoUsuario = datoUsuario.usuarios[0].tipo;
     let url = this.urlServer;
@@ -93,20 +95,21 @@ export class LoginService {
   }
 
   async logAccount(user: string, password: string) {
-    this.presentLoadingWithOptions();
+    await this.presentLoadingWithOptions();
     let url = this.urlServer;
     url += 'log?email=' + user + '&password=' + password;
-    await this.http.get(url).subscribe((response: any) => {
+    console.log(url);
+    this.http.get(url).subscribe(async (response: any) => {
       this.datos = response;
       this.isLoading = false;
-      this.loadingController.dismiss();
+      await this.loadingController.dismiss();
       this.accountDetails(response);
-    }, err => {
-      this.loadingController.dismiss();
+    }, async err => {
+      await this.loadingController.dismiss();
       if (err.error.text === 'no') {
         this.wrongDataAlert();
       } else {
-        this.conectionErrorAlert();
+        this.conectionErrorAlert(err);
       }
     });
     url = this.urlServer;

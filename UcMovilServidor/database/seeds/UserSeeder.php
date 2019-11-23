@@ -54,6 +54,30 @@ class UserSeeder extends Seeder
         'password' => bcrypt('123'),
         'tipo' => 'profesor'
       ]);
+      DB::table('users')->insert([
+        'id' => '90',
+        'email' => '90@gmail.com',
+        'password' => bcrypt('90'),
+        'tipo' => 'alumno'
+      ]);
+      DB::table('users')->insert([
+        'id' => '91',
+        'email' => '91@gmail.com',
+        'password' => bcrypt('91'),
+        'tipo' => 'alumno'
+      ]);
+      DB::table('users')->insert([
+        'id' => '92',
+        'email' => '92@gmail.com',
+        'password' => bcrypt('92'),
+        'tipo' => 'alumno'
+      ]);
+      DB::table('users')->insert([
+        'id' => '93',
+        'email' => '93@gmail.com',
+        'password' => bcrypt('93'),
+        'tipo' => 'alumno'
+      ]);
     }
 
 }

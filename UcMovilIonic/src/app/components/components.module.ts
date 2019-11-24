@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CollapsableComponent } from './collapsable/collapsable.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { CollapsableComponent } from './collapsable/collapsable.component';
     FooterComponent,
     MenuComponent,
     NavbarComponent,
-    CollapsableComponent
+    CollapsableComponent,
   ],
   exports: [
     RouterModule,
@@ -28,7 +29,8 @@ import { CollapsableComponent } from './collapsable/collapsable.component';
   imports: [
     RouterModule,
     CommonModule,
-    IonicModule
+    IonicModule,
+    FormsModule
   ]
 })
 export class ComponentsModule { }

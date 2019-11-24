@@ -23,7 +23,6 @@ export class IngresoNotasPage implements OnInit {
       });
 
     this.notasService.getAlumnos(this.ramo).subscribe((alumnos: any[]) => {
-      console.log(alumnos);
       this.alumnos = alumnos;
     });
   }

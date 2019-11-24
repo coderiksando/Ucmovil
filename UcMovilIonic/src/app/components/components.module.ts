@@ -7,20 +7,23 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CollapsableComponent } from './collapsable/collapsable.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NavbarComponent
+    NavbarComponent,
+    CollapsableComponent
   ],
   exports: [
     RouterModule,
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NavbarComponent
+    NavbarComponent,
+    CollapsableComponent
   ],
   imports: [
     RouterModule,

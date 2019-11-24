@@ -23,7 +23,7 @@ import { ModalsModule } from './modals/modals.module';
     AppRoutingModule,
     HttpClientModule,
     ComponentsModule,
-    ModalsModule
+    ModalsModule,
   ],
   providers: [
     StatusBar,

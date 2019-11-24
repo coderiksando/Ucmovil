@@ -6,12 +6,7 @@
     <h3>Lista de alumnos: </h3>
   </ion-item>
   <ion-list class="ion-padding">
-      <ion-item *ngFor="let alumno of alumnos"
-                detail="true"
-                color="light"
-                button = "true"
-                class="top-10"
-                lines="none">
-                {{alumno.nombre}}</ion-item>
+    <app-collapsable *ngFor="let alumno of alumnos" [alumno]="alumno" [ramo]="ramo">
+    </app-collapsable>
   </ion-list>
 </ion-content>

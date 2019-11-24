@@ -11,9 +11,9 @@ import { AppRoutingPreloaderService } from '../services/app-routing-preloader.se
 export class LoginService {
   datos: any;
   datosDetalle: any;
-  // urlServer = 'http://127.0.0.1:8000/';
+   urlServer = 'http://127.0.0.1:8000/';
   // php artisan serve --host=192.168.0.6 --port=8000
-  urlServer = 'http://192.168.0.6:8000/';
+  // urlServer = 'http://192.168.0.1:8000/';
   cordova: any;
   params = {};
   headers = {};

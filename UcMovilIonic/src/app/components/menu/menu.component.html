@@ -16,6 +16,7 @@
         </ion-label>
     </ion-toolbar>
   </ion-header>
+
   <ion-content>
     <ion-list id="sidenav">
       <div *ngFor="let pagina of lista">
@@ -25,21 +26,22 @@
             <ion-label>{{pagina.name}}</ion-label>
           </ion-item>
         </div>
-        <!-- <div *ngIf="pagina.subElemento">
-            <ion-item (click)="menuItemHandler()">
-              <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
-              <ion-label>{{pagina.name}}</ion-label>
+        <div *ngIf="pagina.subElemento" #BloqueColapsable>
+          <ion-item (click)="mostrarItem()">
+            <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
+            <ion-label>{{pagina.name}}</ion-label>
+          </ion-item>
+          <ion-item-group submenu [class.visible]="showSubmenu">
+            <ion-item *ngFor="let item of pagina.subElemento" [routerLink]="item.redirectTo" 
+                      submenu-item detail>
+              <ion-icon [name]="item.icon" slot="start"></ion-icon>
+              <ion-label>{{item.name}}</ion-label>
             </ion-item>
-            <ion-item-group submenu [class.visible]="showSubmenu">
-              <ion-item *ngFor="let item of pagina.subElemento" [routerLink]="item.redirectTo" 
-                        submenu-item detail>
-                <ion-icon [name]="item.icon" slot="start"></ion-icon>
-                <ion-label>{{item.name}}</ion-label>
-              </ion-item>
-            </ion-item-group>
-          </div> -->
+          </ion-item-group>
+        </div>
       </div>
     </ion-list>
   </ion-content>
+
 </ion-menu>
 <ion-router-outlet main></ion-router-outlet>

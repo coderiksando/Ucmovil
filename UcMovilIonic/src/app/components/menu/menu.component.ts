@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { PagesService } from '../../services/pages.service';
 import { LoginService } from '../../services/login.service';
@@ -10,14 +10,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+
+  @ViewChild('BloqueColapsable', {static : true}) hijoItem: any;
   showSubmenu = false;
 
   lista = [];
 
-  constructor(private menu: MenuController, private pagesService: PagesService,
-              public loginService: LoginService, private router: Router, private platform: Platform ) { }
+  constructor(
+              // private renderer2: Renderer2,
+              public menu: MenuController, public pagesService: PagesService,
+              public loginService: LoginService, public router: Router, public platform: Platform
+               ) { }
 
   ngOnInit() {
+    // this.renderer2.setStyle(this.hijoItem.el, 'webkitTransition', 'max-height 500ms');
     this.lista = this.pagesService.componentes;
     if (this.loginService.datos !== undefined) {
       if (this.loginService.datos.usuarios[0].tipo === 'alumno') {
@@ -42,7 +48,12 @@ export class MenuComponent implements OnInit {
     this.menu.open('first');
   }
 
-  menuItemHandler(): void {
+  mostrarItem() {
+    // if (this.showSubmenu) {
+    //   this.renderer2.setStyle(this.hijoItem.el, 'max-height', '0px');
+    // } else {
+    //   this.renderer2.setStyle(this.hijoItem.el, 'max-height', '500px');
+    // }
     this.showSubmenu = !this.showSubmenu;
   }
 

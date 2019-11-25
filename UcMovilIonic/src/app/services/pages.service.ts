@@ -81,6 +81,27 @@ export class PagesService  {
         redirectTo: '/asignacion-sala'
       },
       {
+        icon: 'compass',
+        name: 'Asignación de salas',
+        subElemento: [
+          {
+            icon: 'compass',
+            name: 'Asignación de salas',
+            redirectTo: '/asignacion-sala'
+          },
+          {
+            icon: 'compass',
+            name: 'Asignación de salas',
+            redirectTo: '/asignacion-sala'
+          },
+          {
+            icon: 'compass',
+            name: 'Asignación de salas',
+            redirectTo: '/asignacion-sala'
+          }
+        ]
+      },
+      {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'

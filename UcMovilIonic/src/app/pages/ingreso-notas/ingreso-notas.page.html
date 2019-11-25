@@ -5,13 +5,12 @@
   <ion-item color="light" lines="none">
     <h3>Lista de alumnos: </h3>
   </ion-item>
-  <ion-list class="ion-padding">
-      <ion-item *ngFor="let alumno of alumnos"
-                detail="true"
-                color="light"
-                button = "true"
-                class="top-10"
-                lines="none">
-                {{alumno.nombre}}</ion-item>
+  <ion-list class="customPadding">
+    <app-collapsable *ngFor="let alumno of alumnos"
+                      [alumno]="alumno"
+                      [ramo]="ramo"
+                      [arrayInputs]="arrayInputs"
+                      [arrayPonderaciones]="arrayPonderaciones">
+    </app-collapsable>
   </ion-list>
 </ion-content>

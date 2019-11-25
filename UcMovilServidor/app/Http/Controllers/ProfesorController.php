@@ -50,13 +50,11 @@ class ProfesorController extends Controller
       $id_ramo =  $request->id_c;
       $id_alumno = $request->id_a;
       
-      $notas["prenotas"] = DB::table('ramos_actuales')
-                  ->join('ponderaciones_ramos', ['ramos_actuales.id_ramo' => 'ponderaciones_ramos.id_ramo', 
-                                                  'ramos_actuales.N_nota' => 'ponderaciones_ramos.n_nota'])
-                  ->select('ramos_actuales.n_nota', 'nota', 'P_nota')
+      $notas = DB::table('ramos_actuales')
+                  ->select('nota')
                   ->where(['id_alumno' => $id_alumno, 'ramos_actuales.id_ramo'=>$id_ramo])->get();
 
-      return $notas;
+      return response()->json($notas->pluck('nota'));
     } 
 
     public function ingresar_notas(Request $request){
@@ -66,7 +64,7 @@ class ProfesorController extends Controller
         $ramoactual->nota = $request->$i;
         $ramoactual->save();
       }
-     // return "ok";
+      return response(200)->header('Content-Type', 'text/plain');;
     }
 
      public function enviar_boletin(Request $request)

@@ -7,25 +7,30 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CollapsableComponent } from './collapsable/collapsable.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NavbarComponent
+    NavbarComponent,
+    CollapsableComponent,
   ],
   exports: [
     RouterModule,
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NavbarComponent
+    NavbarComponent,
+    CollapsableComponent
   ],
   imports: [
     RouterModule,
     CommonModule,
-    IonicModule
+    IonicModule,
+    FormsModule
   ]
 })
 export class ComponentsModule { }

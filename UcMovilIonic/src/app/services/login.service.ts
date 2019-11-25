@@ -13,7 +13,8 @@ export class LoginService {
   datosDetalle: any;
   // php artisan serve --host=192.168.0.6 --port=8000
   // url de tu ipconfig
-  urlServer = 'http://192.168.0.6:8000/';
+  // urlServer = 'http://192.168.0.6:8000/';
+  urlServer = 'http://127.0.0.1:8000/';
   cordova: any;
   params = {};
   headers = {};

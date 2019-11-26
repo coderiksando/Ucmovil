@@ -20,25 +20,14 @@
   <ion-content>
     <ion-list>
       <div *ngFor="let pagina of lista">
-        <div *ngIf="!pagina.subElemento">
-          <ion-item [routerLink]="pagina.redirectTo" detail>
-            <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
-            <ion-label>{{pagina.name}}</ion-label>
-          </ion-item>
-        </div>
-        <div *ngIf="pagina.subElemento">
-            <ion-item (click)="mostrarItem()">
-              <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
-              <ion-label>{{pagina.name}}</ion-label>
-            </ion-item>
-            <ion-item-group submenu #BloqueColapsable style="max-height: 0px !important;">
-              <ion-item *ngFor="let item of pagina.subElemento" [routerLink]="item.redirectTo" 
-                        submenu-item detail>
-                <ion-icon [name]="item.icon" slot="start"></ion-icon>
-                <ion-label>{{item.name}}</ion-label>
-              </ion-item>
-            </ion-item-group>
-        </div>
+        <ion-item *ngIf="!pagina.subElemento" [routerLink]="pagina.redirectTo" detail>
+          <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
+          <ion-label>{{pagina.name}}</ion-label>
+        </ion-item>
+
+        <app-item-collapsable *ngIf="pagina.subElemento" [pagina]="pagina">
+        </app-item-collapsable>
+
       </div>
     </ion-list>
   </ion-content>

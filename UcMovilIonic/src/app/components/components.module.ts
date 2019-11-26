@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CollapsableComponent } from './collapsable/collapsable.component';
+import { ItemCollapsableComponent } from './item-collapsable/item-collapsable.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     MenuComponent,
     NavbarComponent,
     CollapsableComponent,
+    ItemCollapsableComponent
   ],
   exports: [
     RouterModule,
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     MenuComponent,
     NavbarComponent,
-    CollapsableComponent
+    CollapsableComponent,
+    ItemCollapsableComponent
   ],
   imports: [
     RouterModule,

@@ -1,0 +1,10 @@
+<ion-item (click)="mostrarItem()">
+  <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
+  <ion-label>{{pagina.name}}</ion-label>
+</ion-item>
+<ion-item-group submenu #BloqueColapsable>
+  <ion-item *ngFor="let item of pagina.subElemento" [routerLink]="item.redirectTo" 
+            class="submenu-item" detail>
+    <ion-label>{{item.name}}</ion-label>
+  </ion-item>
+</ion-item-group>

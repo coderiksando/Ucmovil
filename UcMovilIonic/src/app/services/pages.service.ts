@@ -84,7 +84,7 @@ export class PagesService  {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'
-      },
+      }/*,
       {
         icon: 'compass',
         name: 'XXX',
@@ -120,7 +120,7 @@ export class PagesService  {
             redirectTo: '/asignacion-sala'
           }
         ]
-      }
+      }*/
     );
   }
 

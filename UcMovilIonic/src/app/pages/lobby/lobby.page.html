@@ -12,10 +12,16 @@
         </ion-refresher-content>
     </ion-refresher>
     
-    <div *ngIf="newsService.noticiaRespuesta">
-        <ion-card mode="ios" *ngFor="let noticia of newsService.noticiaRespuesta.noticias">
+    <div *ngIf="newsService.noticiaRespuesta" class="ion-padding">
+        <ion-card *ngFor="let noticia of newsService.noticiaRespuesta.noticias">
             <ion-card-header>
+                <div *ngIf="loginService.datos.usuarios[0].tipo === 'secretaria' || loginService.datos.usuarios[0].tipo === 'director_carrera'">
+                    <ion-icon class="option" color="success" name="create" (click)="edit( noticia )"></ion-icon>
+                    <ion-icon class="option" color="warning" name="trash" (click)="delete( noticia )"></ion-icon>
+                </div>
+                
                 <ion-card-title> <ion-icon name="paper"></ion-icon> {{noticia.titulo}} </ion-card-title>
+
                 <ion-card-subtitle> 
                     <ion-icon name="person"></ion-icon>
                     Escrito por: <b>{{noticia.propietario}}</b>

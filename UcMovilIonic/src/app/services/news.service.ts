@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
 import { AlertController } from '@ionic/angular';
+import { IngresoNoticiaPage } from '../pages/ingreso-noticia/ingreso-noticia.page';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,8 @@ export class NewsService {
   async sendNew(noticia: any) {
     let url = this.loginService.urlServer;
     url += '/secretaria/agregar_noticia' + '?titulo=' + noticia.titulo + '&texto='
-        +   noticia.texto +  '&estado=' +   noticia.estado + '&propietario=' + noticia.propietario;
+        +   noticia.texto +  '&estado=' +   noticia.estado + '&propietario=' + noticia.propietario
+        +   '&id_noticia=' + noticia.id_noticia;
     // console.log(url);
     this.httpClient.get(url).subscribe(async (response: any) => {
         this.respuestaEnvio = response;

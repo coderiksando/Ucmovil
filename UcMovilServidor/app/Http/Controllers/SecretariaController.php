@@ -40,15 +40,27 @@ class SecretariaController extends Controller
 
   public function agregar_noticia(Request $request)
   {
-    $noticia = new Noticia;
-    $noticia->titulo=$request->titulo;
-    $noticia->texto=$request->texto;
-    $noticia->estado=$request->estado;
-    $noticia->propietario=$request->propietario;
-    $noticia->tag=$request->tag;
-    $noticia->save();
-    // return "ok";
-
+    if ($request->id_noticia != "") {
+      $id_noticia = $request ->id_noticia;
+      $titulo= $request ->titulo;
+      $texto= $request ->texto;
+      $estado= $request ->estado;
+      $propietario= $request ->propietario;
+      DB::table("noticias")->where('id_noticia',$id_noticia)->update([
+        'titulo'=>$titulo,
+        'texto'=>$texto,
+        'estado'=>$estado,
+        'propietario'=>$propietario
+      ]);
+    } else {
+      $noticia = new Noticia;
+      $noticia->titulo=$request->titulo;
+      $noticia->texto=$request->texto;
+      $noticia->estado=$request->estado;
+      $noticia->propietario=$request->propietario;
+      $noticia->tag=$request->tag;
+      $noticia->save();
+    }
   }
 
   public function editar_noticia(Request $request)
@@ -64,7 +76,12 @@ class SecretariaController extends Controller
       'estado'=>$estado,
       'propietario'=>$propietario
     ]);
-    // return "ok";
+  }
+
+  public function borrar_noticia( Request $request )
+  {
+    $id_noticia = $request->id;
+    DB::table("noticias")->where('id_noticia',$id_noticia)->delete();
   }
 
   public function Mensajeria(Request $request)

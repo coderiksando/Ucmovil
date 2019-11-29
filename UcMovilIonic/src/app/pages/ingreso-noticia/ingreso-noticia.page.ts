@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { LoginService } from '../../services/login.service';
 import { NewsService } from '../../services/news.service';
+import { LobbyPage } from '../lobby/lobby.page';
+import { StaticDataService } from '../../services/static-data.service';
 
 @Component({
   selector: 'app-ingreso-noticia',
@@ -11,6 +13,7 @@ import { NewsService } from '../../services/news.service';
 export class IngresoNoticiaPage implements OnInit {
 
   noticia = {
+    id_noticia  : '',
     titulo      : '',
     texto       : '',
     estado      : '',
@@ -21,11 +24,18 @@ export class IngresoNoticiaPage implements OnInit {
   titulo = 'Ingreso de noticias';
   botonRegresoCancelar = false;
 
-  constructor(  private menuComponent: MenuComponent, private loginService: LoginService,
-                private newsService: NewsService ) { }
+  constructor(  public menuComponent: MenuComponent, public loginService: LoginService,
+                public newsService: NewsService, public staticDataService: StaticDataService ) { }
 
   ngOnInit() {
-    this.noticia.propietario = this.loginService.datosDetalle[0].nombre;
+    if ( this.staticDataService.noticiaObjetoEditar !== undefined ) {
+      this.noticia.titulo = this.staticDataService.noticiaObjetoEditar.titulo;
+      this.noticia.texto = this.staticDataService.noticiaObjetoEditar.texto;
+      this.noticia.propietario = this.staticDataService.noticiaObjetoEditar.propietario;
+      this.noticia.id_noticia  = this.staticDataService.noticiaObjetoEditar.id_noticia;
+    } else {
+      this.noticia.propietario = this.loginService.datosDetalle[0].nombre;
+    }
     this.noticia.estado = 'Aprobada';
   }
 

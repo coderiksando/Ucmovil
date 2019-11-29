@@ -20,7 +20,7 @@
   <ion-content>
     <ion-list>
       <div *ngFor="let pagina of lista">
-        <ion-item *ngIf="!pagina.subElemento" [routerLink]="pagina.redirectTo" detail>
+        <ion-item *ngIf="!pagina.subElemento" [routerLink]="pagina.redirectTo" (click)="limpiezaMenu()" detail>
           <ion-icon [name]="pagina.icon" slot="start"></ion-icon>
           <ion-label>{{pagina.name}}</ion-label>
         </ion-item>

@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { ModalsModule } from './modals/modals.module';
+import { LobbyPage } from './pages/lobby/lobby.page';
 
 @NgModule({
   declarations: [AppComponent],

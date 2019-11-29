@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { IngresoNoticiaPage } from './ingreso-noticia.page';
 import { ComponentsModule } from '../../components/components.module';
+import { LobbyPage } from '../lobby/lobby.page';
 
 const routes: Routes = [
   {

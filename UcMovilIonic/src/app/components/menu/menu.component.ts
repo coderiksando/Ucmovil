@@ -3,6 +3,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { PagesService } from '../../services/pages.service';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { StaticDataService } from '../../services/static-data.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +15,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
   lista = [];
 
   constructor(public menu: MenuController, public pagesService: PagesService,
-              public loginService: LoginService, public router: Router, public platform: Platform ) { }
+              public loginService: LoginService, public router: Router, public platform: Platform,
+              public staticDataService: StaticDataService ) { }
 
   ngOnInit() {
     this.lista = this.pagesService.componentes;
@@ -41,6 +43,10 @@ export class MenuComponent implements OnInit, AfterViewInit {
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
+  }
+
+  limpiezaMenu() {
+    this.staticDataService.noticiaObjetoEditar = undefined;
   }
 
 }

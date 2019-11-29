@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Alumno;
+use App\User;
 
 class AlumnoSeeder extends Seeder
 {
@@ -23,66 +25,17 @@ class AlumnoSeeder extends Seeder
         'telefono' => '+56999999999',
         'direccion' => 'El campo bien lejos',
         'semestre_actual' => '9',
-        'apodo'=>'Tiano',
-        'id_malla'=>'ICI'
-      ]);
-
-      DB::table('alumnos')->insert([
-        'id' => '6',
-        'ano_ingreso' => '0001/01/01',
-        'nombre' => 'Savio Campos Albornoz',
-        'ano_nacimiento' => '1995',
-        'telefono' => '9997878',
-        'direccion' => 'Mi casa',
-        'semestre_actual' => '1',
-        'apodo'=>'Sak',
-        'id_malla'=>'ICI'
-      ]);
-      DB::table('alumnos')->insert([
-        'id' => '90',
-        'ano_ingreso' => '0001/01/01',
-        'nombre' => 'Raul Zagal Bernales',
-        'ano_nacimiento' => '1995',
-        'telefono' => '9997878',
-        'direccion' => 'Mi casa',
-        'semestre_actual' => '1',
-        'apodo'=>'Ra',
-        'id_malla'=>'ICI'
-      ]);
-      DB::table('alumnos')->insert([
-        'id' => '91',
-        'ano_ingreso' => '0001/01/01',
-        'nombre' => 'Dieguito Armando Maladroga',
-        'ano_nacimiento' => '1995',
-        'telefono' => '9997878',
-        'direccion' => 'Mi casa',
-        'semestre_actual' => '1',
-        'apodo'=>'Elduro',
-        'id_malla'=>'ICI'
-      ]);
-      DB::table('alumnos')->insert([
-        'id' => '92',
-        'ano_ingreso' => '0001/01/01',
-        'nombre' => 'Sir Velnassar Crowley',
-        'ano_nacimiento' => '1995',
-        'telefono' => '9997878',
-        'direccion' => 'Mi casa',
-        'semestre_actual' => '1',
-        'apodo'=>'Velna',
-        'id_malla'=>'ICI'
-      ]);
-      DB::table('alumnos')->insert([
-        'id' => '93',
-        'ano_ingreso' => '0001/01/01',
-        'nombre' => 'Ramon Valdes Soto',
-        'ano_nacimiento' => '1995',
-        'telefono' => '9997878',
-        'direccion' => 'Mi casa',
-        'semestre_actual' => '1',
-        'apodo'=>'Moncho',
+        'apodo'=>'Pedro',
         'id_malla'=>'ICI'
       ]);
 
 
+      $alumnos = User::all()->where('tipo', 'alumno')->where('id','!=', '1')->pluck('id');
+
+      foreach ($alumnos as $id) {
+        factory(Alumno::class)->create([
+          'id' => $id
+        ]);
+      }
     }
 }

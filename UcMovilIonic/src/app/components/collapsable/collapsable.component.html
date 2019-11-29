@@ -1,6 +1,6 @@
 <ion-card no-border>
   <ion-card-header color ="light" class="blueBorder">
-    <ion-item color="light" button = "true" (click)="toggle()">
+    <ion-item color="light" button = "true" (click)="toggle()" [disabled]="inactivo">
       <ion-text slot="start">{{alumno.nombre}}</ion-text>
       <ion-icon slot="end" name="arrow-dropdown"></ion-icon>
     </ion-item>

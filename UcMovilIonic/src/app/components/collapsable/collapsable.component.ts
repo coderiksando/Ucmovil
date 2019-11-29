@@ -13,6 +13,7 @@ export class CollapsableComponent implements OnInit {
   @Input() ramo: number;
   @Input() arrayPonderaciones: number[];
   @Input() arrayInputs: number[];
+  @Input() inactivo: boolean;
   @ViewChild('CollapsableBlock', {static: true}) cardContent: any;
   expanded = false;
   arrayNotas: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];

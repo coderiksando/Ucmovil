@@ -15,6 +15,7 @@ export class IngresoNotasPage implements OnInit {
   alumnos: any[];
   arrayPonderaciones: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   arrayInputs: number[] = [0];
+  inactivo = true;
 
   constructor( private route: ActivatedRoute, private notasService: NotasService, private ponderacionesService: PonderacionesService) { }
 
@@ -30,6 +31,7 @@ export class IngresoNotasPage implements OnInit {
     });
     this.ponderacionesService.getPonderaciones(this.ramo).subscribe((ponderaciones: any[]) => {
       if (ponderaciones.length > 0) {
+        this.inactivo = false;
         ponderaciones.forEach(ponderacion => {
           this.arrayPonderaciones[ponderacion.N_nota - 1] = ponderacion.P_nota;
           if (ponderacion.P_nota > 0.0 && ponderacion.N_nota > 1) {

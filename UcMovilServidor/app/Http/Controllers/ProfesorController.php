@@ -11,6 +11,7 @@ use App\PonderacionesRamo;
 use App\RamosActuale;
 use App\Boletine;
 use App\Profesore;
+use App\Nota;
 use Auth;
 
 class ProfesorController extends Controller
@@ -39,7 +40,7 @@ class ProfesorController extends Controller
 
     public function mostrar_lista(Request $request)  //entrega la lista de alumnos pertenecientes a un curso
     {
-      $AlumnosArray = DB::table('ramos_actuales')->select('id_alumno')->where('id_ramo', $request->id)->distinct()->get(); //obtiene la lista de alumnos pertenecientes a un ramo
+      $AlumnosArray = DB::table('ramos_actuales')->select('id_alumno')->where('id_ramo', $request->id)->get(); //obtiene la lista de alumnos pertenecientes a un ramo
 
       $alumnos =   DB::table('alumnos')->select('id','nombre')->whereIn('id', $AlumnosArray->pluck('id_alumno'))->get();  //obtiene los datos de cada alumno incluido en el AlumnoArray 
       return response()->json($alumnos);  //entrega datos en forma de json
@@ -50,9 +51,9 @@ class ProfesorController extends Controller
       $id_ramo =  $request->id_c;
       $id_alumno = $request->id_a;
       
-      $notas = DB::table('ramos_actuales')
+      $notas = DB::table('notas')
                   ->select('nota')
-                  ->where(['id_alumno' => $id_alumno, 'ramos_actuales.id_ramo'=>$id_ramo])->get();
+                  ->where(['id_alumno' => $id_alumno, 'notas.id_ramo'=>$id_ramo])->get();
 
       return response()->json($notas->pluck('nota'));
     } 
@@ -60,9 +61,9 @@ class ProfesorController extends Controller
     public function ingresar_notas(Request $request){
       for ($i=0; $i < 10; $i++) { 
         $nota = $request->$i;
-        $ramoactual = RamosActuale::firstOrNew(['id_ramo' => $request->id_ramo, 'id_alumno' => $request->id_alumno, 'n_nota'=>$i+1]);
-        $ramoactual->nota = $request->$i;
-        $ramoactual->save();
+        $notaactual = Nota::firstOrNew(['id_ramo' => $request->id_ramo, 'id_alumno' => $request->id_alumno, 'n_nota'=>$i+1]);
+        $notaactual->nota = $request->$i;
+        $notaactual->save();
       }
       return response(200)->header('Content-Type', 'text/plain');;
     }

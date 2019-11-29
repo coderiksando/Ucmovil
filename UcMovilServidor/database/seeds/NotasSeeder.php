@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RamosActualeSeeder extends Seeder
+class NotasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,12 +12,12 @@ class RamosActualeSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('ramos_actuales')->truncate();
+        DB::table('notas')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         
         for ($i=1; $i <= 10; $i++) {
-            DB::table('ramos_actuales')->insert([
+            DB::table('notas')->insert([
                 'id_ramo' => '1',
 	            'id_alumno' => '1',
 	            'nota' => rand(10, 70) / 10,
@@ -26,7 +26,7 @@ class RamosActualeSeeder extends Seeder
         }
 
         for ($i=1; $i <= 10; $i++) {
-            DB::table('ramos_actuales')->insert([
+            DB::table('notas')->insert([
                 'id_ramo' => '1',
 	            'id_alumno' => '6',
 	            'nota' => rand(10, 70) / 10,
@@ -35,7 +35,7 @@ class RamosActualeSeeder extends Seeder
         }
 
         for ($i=1; $i <= 10; $i++) {
-            DB::table('ramos_actuales')->insert([
+            DB::table('notas')->insert([
                 'id_ramo' => '1',
 	            'id_alumno' => '90',
 	            'nota' => rand(10, 70) / 10,
@@ -43,7 +43,7 @@ class RamosActualeSeeder extends Seeder
             ]);
         }
         for ($i=1; $i <= 10; $i++) {
-            DB::table('ramos_actuales')->insert([
+            DB::table('notas')->insert([
                 'id_ramo' => '1',
 	            'id_alumno' => '91',
 	            'nota' => rand(10, 70) / 10,
@@ -51,7 +51,7 @@ class RamosActualeSeeder extends Seeder
             ]);
         }
         for ($i=1; $i <= 10; $i++) {
-            DB::table('ramos_actuales')->insert([
+            DB::table('notas')->insert([
                 'id_ramo' => '1',
 	            'id_alumno' => '92',
 	            'nota' => rand(10, 70) / 10,
@@ -59,7 +59,7 @@ class RamosActualeSeeder extends Seeder
             ]);
         }
         for ($i=1; $i <= 10; $i++) {
-            DB::table('ramos_actuales')->insert([
+            DB::table('notas')->insert([
                 'id_ramo' => '1',
 	            'id_alumno' => '93',
 	            'nota' => rand(10, 70) / 10,

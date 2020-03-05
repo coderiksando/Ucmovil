@@ -24,6 +24,11 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
+        icon: 'chatboxes',
+        name: 'Chat',
+        redirectTo: '/chat'
+      },
+      {
         icon: 'stats',
         name: 'Notas asignatura',
         redirectTo: '/notas-alumnos'
@@ -45,14 +50,14 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
-        icon: 'power',
-        name: 'Finalizar sesión',
-        redirectTo: '/login'
-      },
-      {
         icon: 'business',
         name: 'Ramos Impartidos',
         redirectTo: '/ramos-impartidos'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
       }
     );
   }

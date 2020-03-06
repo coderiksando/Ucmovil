@@ -45,14 +45,14 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
-        icon: 'power',
-        name: 'Finalizar sesión',
-        redirectTo: '/login'
-      },
-      {
         icon: 'business',
         name: 'Ramos Impartidos',
         redirectTo: '/ramos-impartidos'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
       }
     );
   }

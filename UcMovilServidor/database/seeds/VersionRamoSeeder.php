@@ -17,7 +17,7 @@ class VersionRamoSeeder extends Seeder
       DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
       factory(VersionRamo::class, 20)->create([
-        'year' => '2018',
+        'year' => '2020',
         'semestre' => '1'
       ]);
     }

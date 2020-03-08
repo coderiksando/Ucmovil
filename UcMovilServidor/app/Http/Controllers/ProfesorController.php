@@ -59,7 +59,7 @@ class ProfesorController extends Controller
     } 
 
     public function ingresar_notas(Request $request){
-      for ($i=0; $i < 10; $i++) { 
+      for ($i=0; $i < $request->len; $i++) { 
         $nota = $request->$i;
         $notaactual = Nota::firstOrNew(['id_ramo' => $request->id_ramo, 'id_alumno' => $request->id_alumno, 'n_nota'=>$i+1]);
         $notaactual->nota = $request->$i;
@@ -95,6 +95,10 @@ class ProfesorController extends Controller
           $ponderacion = PonderacionesRamo::firstOrNew(['id_ramo'=> $request->id, 'N_nota' => $i]); 
           $ponderacion->P_nota = $request->$P_nota;
           $ponderacion->save();
+
+          if ($ponderacion->P_nota == 0) {
+            $notas = Nota::where(['id_ramo' => $request->id, 'n_nota' => $i])->delete();
+          }
         }
         return response(200)->header('Content-Type', 'text/plain');;
     }

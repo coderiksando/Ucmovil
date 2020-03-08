@@ -26,7 +26,7 @@ export class NotasService {
   setNotas(notas: number[], ramo: number, alumno: number) {
     let url = this.loginService.urlServer;
     let i = 0;
-    url += 'IngresarNotas?id_ramo=' + ramo + '&id_alumno=' + alumno;
+    url += 'IngresarNotas?id_ramo=' + ramo + '&id_alumno=' + alumno + '&len=' + notas.length;
     notas.forEach(nota => {
       url += '&' + i + '=' + notas[i];
       i++;

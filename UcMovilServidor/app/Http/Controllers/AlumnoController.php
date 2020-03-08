@@ -40,19 +40,33 @@ class AlumnoController extends Controller
 
     return response()->json($RamosActuale);
   }
+  
   public function RamosActuales(Request $request){
-    $RamosA = DB::table('ramos_actuales')
+    $ramosA = DB::table('ramos_actuales')
                             ->where('id_alumno', $request->id)
-                            ->distinct()->pluck('id_ramo');  
+                            ->distinct()->pluck('id_ramo');
 
-    $RamosActuale['ramosactuale'] = DB::table('version_ramos')
-                                    ->join('asignaturas', 'version_ramos.id_asignatura', 'asignaturas.id_asignatura')
-                                    ->join('ramos_actuales', 'version_ramos.id_ramo', 'ramos_actuales.id_ramo')
-                                    ->select('asignaturas.nombre', 'ramos_actuales.nota', 'ramos_actuales.n_nota')
-                                    ->whereIn('version_ramos.id_ramo', $RamosA)
+    $NotasAlumno['notasAlumnoActual'] = DB::table('notas')
+                                    ->join('version_ramos','version_ramos.id_ramo','notas.id_ramo')
+                                    ->select('version_ramos.*', 'notas.*')
+                                    ->whereIn('version_ramos.id_ramo', $ramosA)
+                                    ->where('notas.id_alumno',$request->id)
                                     ->get();
 
-    return response()->json($RamosActuale);
+    return response()->json($NotasAlumno);
+  }
+
+  public function historialNotaAlumno(Request $request){
+    //historial de notas  
+    $notasAsignaturaAlumno['histAlumno'] = DB::table('notas')
+                                  ->join('version_ramos', 'notas.id_ramo', 'version_ramos.id_ramo')
+                                  ->join('asignaturas', 'asignaturas.id_asignatura', 'version_ramos.id_asignatura')
+                                  ->where('id_alumno', $request->id)
+                                  ->select( 'asignaturas.nombre',
+                                            'version_ramos.year', 'version_ramos.semestre',
+                                            'notas.nota', 'notas.n_nota')
+                                  ->get();
+    return $notasAsignaturaAlumno;
   }
 
   public function MensajeriaC(Request $request)

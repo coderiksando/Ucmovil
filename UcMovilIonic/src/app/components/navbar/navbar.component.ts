@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     // this.noticiaArrayOriginal = JSON.parse(JSON.stringify(this.newsService.noticiaRespuesta.noticias));
-    this.noticiaArrayOriginal = this.newsService.noticiaRespuesta.noticias.map( (x: any) => x);
+    // this.noticiaArrayOriginal = this.newsService.noticiaRespuesta.noticias.map( (x: any) => x);
   }
 
   clickMenu() {
@@ -34,40 +34,47 @@ export class NavbarComponent implements OnInit {
     } else {
       this.showMe = false;
     }
+    // if (this.noticiaArrayOriginal.length !== this.newsService.noticiaRespuesta.noticias.length ) {
+    //   this.noticiaArrayOriginal = this.newsService.noticiaRespuesta.noticias.map( (x: any) => x);
+    // }
   }
 
   busquedaEvento(event) {
-    // this.newsService.noticiaRespuesta.noticias = JSON.parse(JSON.stringify(this.noticiaArrayOriginal));
-    this.newsService.noticiaRespuesta.noticias = this.noticiaArrayOriginal.map( (x: any) => x);
-    this.noBorrar = [];
-    this.borrar = [];
-    let nNoticia = 0;
-    if (event.target.value.length !== 0) {
-      this.newsService.noticiaRespuesta.noticias.forEach(noticia => {
-        for (const elementoNoticia in noticia) {
-          if (elementoNoticia !== 'tag' && elementoNoticia !== 'estado' &&
-              elementoNoticia !== 'id_noticia' && elementoNoticia !== 'created_at') {
-            if (noticia[elementoNoticia].toLowerCase().indexOf(event.target.value.toLowerCase()) >= 0) {
-              if (this.noBorrar[this.noBorrar.length - 1] !== nNoticia) {
-                this.noBorrar.push(nNoticia);
+    // this.newsService.noticiaRespuesta.noticias =JSON.parse(JSON.stringify(this.noticiaArrayOriginal));
+    if (event.target.value.length > 0) {
+      this.newsService.noticiaRespuesta.noticias = this.newsService.copiaNoticiaRespuesta.map( (x: any) => x);
+      this.noBorrar = [];
+      this.borrar = [];
+      let nNoticia = 0;
+      if (event.target.value.length !== 0) {
+        this.newsService.noticiaRespuesta.noticias.forEach(noticia => {
+          for (const elementoNoticia in noticia) {
+            if (elementoNoticia !== 'tag' && elementoNoticia !== 'estado' &&
+                elementoNoticia !== 'id_noticia' && elementoNoticia !== 'created_at') {
+              if (noticia[elementoNoticia].toLowerCase().indexOf(event.target.value.toLowerCase()) >= 0) {
+                if (this.noBorrar[this.noBorrar.length - 1] !== nNoticia) {
+                  this.noBorrar.push(nNoticia);
+                }
               }
             }
           }
-        }
-        nNoticia += 1;
-      });
-      for (let index = 0; index < this.newsService.noticiaRespuesta.noticias.length ; index++) {
-        if (this.noBorrar.indexOf(index) === -1) {
-          this.borrar.push(index);
+          nNoticia += 1;
+        });
+        for (let index = 0; index < this.newsService.noticiaRespuesta.noticias.length ; index++) {
+          if (this.noBorrar.indexOf(index) === -1) {
+            this.borrar.push(index);
+          }
         }
       }
-    }
-    if (this.borrar.length > 0) {
-      let aux = 0;
-      this.borrar.forEach(element => {
-        this.newsService.noticiaRespuesta.noticias.splice(element - aux, 1);
-        aux += 1;
-      });
+      if (this.borrar.length > 0) {
+        let aux = 0;
+        this.borrar.forEach(element => {
+          this.newsService.noticiaRespuesta.noticias.splice(element - aux, 1);
+          aux += 1;
+        });
+      }
+    } else {
+      this.newsService.noticiaRespuesta.noticias = this.newsService.copiaNoticiaRespuesta.map( (x: any) => x);;
     }
   }
 

@@ -10,6 +10,7 @@ import { IngresoNoticiaPage } from '../pages/ingreso-noticia/ingreso-noticia.pag
 export class NewsService {
   url: string;
   noticiaRespuesta: any;
+  copiaNoticiaRespuesta: any;
   respuestaEnvio: any;
 
   constructor(private httpClient: HttpClient, private loginService: LoginService,
@@ -20,6 +21,7 @@ export class NewsService {
     this.url += 'secretaria/mostrar_noticia';
     this.httpClient.get(this.url).subscribe((response: any) => {
       this.noticiaRespuesta = response;
+      this.copiaNoticiaRespuesta = this.noticiaRespuesta.noticias.map((x: any) => x);
       event.target.complete();
     }, err => {
         console.log(err);
@@ -32,6 +34,7 @@ export class NewsService {
     this.url += 'secretaria/mostrar_noticia';
     this.httpClient.get(this.url).subscribe((response: any) => {
       this.noticiaRespuesta = response;
+      this.copiaNoticiaRespuesta = this.noticiaRespuesta.noticias.map((x: any) => x);
     }, err => {
         console.log(err);
     });

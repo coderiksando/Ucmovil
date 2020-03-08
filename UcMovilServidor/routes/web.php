@@ -38,6 +38,7 @@ Route::get('/Mensaje', 'HomeController@Mensaje')->name('Mensaje');
 Route::get('/CodigoA', 'AsignaturaController@CodigoA')->name('CodigoA');
 Route::get('/RamosA', 'AlumnoController@RamosA')->name('RamosA');
 Route::get('/RamosActuales', 'AlumnoController@RamosActuales');
+Route::get('/historialNotaAlumno', 'AlumnoController@historialNotaAlumno');
 Route::get('/NameA', 'AsignaturaController@NameA')->name('NameA');
 Route::get('/ProfesorA', 'AsignaturaController@ProfesorA')->name('ProfesorA');
 Route::get('/HorarioA', 'AsignaturaController@HorarioA')->name('HorarioA');

@@ -7,7 +7,7 @@
                 <ion-label position = "fixed">Nota: {{i+1}}</ion-label>
             </ion-col>
             <ion-col class="ion-align-self-center" offset="1" size="3">
-                <ion-input class="pondInput" max=100 maxlength=3 type="number" color="primary" [(ngModel)]="arrayPonderaciones[i]"></ion-input>
+                <ion-input inputmode="numeric" class="pondInput" max=100 maxlength=3 type="number" color="primary" [(ngModel)]="arrayPonderaciones[i]"></ion-input>
             </ion-col>
             <ion-col class="ion-align-self-center" size="2">
                 <ion-label>%</ion-label> 

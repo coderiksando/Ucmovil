@@ -75,7 +75,9 @@ export class IngresoPonderacionesPage implements OnInit {
   onSave() {
     let zeros = false;
     let index = 0;
+    let suma = 0;
     this.arrayNum.forEach(obj => {
+      suma += this.arrayPonderaciones[index];
       if (this.arrayPonderaciones[index] <= 0) {
         zeros = true;
       }
@@ -85,14 +87,17 @@ export class IngresoPonderacionesPage implements OnInit {
     if (zeros) {
       this.presentZerosAlert();
     } else {
-      this.ponderacionesService.setPonderaciones(this.arrayPonderaciones, this.ramo)
-      .subscribe((response: any) => {
-        if (response === 200) {
-          this.presentSuccesAlert();
+        if (suma > 100) {
+          this.presentCientosAlert();
         } else {
-          this.presentErrorAlert();
+          this.ponderacionesService.setPonderaciones(this.arrayPonderaciones, this.ramo).subscribe((response: any) => {
+            if (response === 200) {
+              this.presentSuccesAlert();
+            } else {
+              this.presentErrorAlert();
+            }
+          });
         }
-      });
     }
   }
 
@@ -101,6 +106,28 @@ export class IngresoPonderacionesPage implements OnInit {
       header: 'Error',
       subHeader: 'No es posible almacenar las ponderaciones',
       message: 'Los valores de las ponderaciones deben ser superiores a 0.',
+      animated: true,
+      buttons: [
+        {
+          text: 'Aceptar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            // console.log('Cancel');
+            }
+        }
+    ]
+    });
+
+    await alert.present();
+  }
+
+
+  async presentCientosAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'No es posible almacenar las ponderaciones',
+      message: 'La suma de las ponderaciones no puede ser superior a 100.',
       animated: true,
       buttons: [
         {

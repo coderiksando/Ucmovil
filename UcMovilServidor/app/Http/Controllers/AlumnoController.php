@@ -67,16 +67,22 @@ class AlumnoController extends Controller
   }
 
   public function historialNotaAlumno(Request $request){
-    //historial de notas  
-    $notasAsignaturaAlumno['histAlumno'] = DB::table('notas')
-                                  ->join('version_ramos', 'notas.id_ramo', 'version_ramos.id_ramo')
-                                  ->join('asignaturas', 'asignaturas.id_asignatura', 'version_ramos.id_asignatura')
-                                  ->where('id_alumno', $request->id)
-                                  ->select( 'asignaturas.nombre',
-                                            'version_ramos.year', 'version_ramos.semestre',
-                                            'notas.nota', 'notas.n_nota')
-                                  ->get();
-    return $notasAsignaturaAlumno;
+    $notasAsignaturaAlumno['notasAlumnoActual'] = DB::table('notas')
+                                    ->join('version_ramos','version_ramos.id_ramo','notas.id_ramo')
+                                    ->join('asignaturas','version_ramos.id_asignatura','asignaturas.id_asignatura')
+                                    ->join('ponderaciones_ramos', function($join){
+                                      $join ->on('ponderaciones_ramos.id_ramo','version_ramos.id_ramo')
+                                            ->on('ponderaciones_ramos.N_nota','notas.n_nota');
+                                    })
+                                    ->where('notas.id_alumno',$request->id)
+                                    ->select( 'notas.nota','notas.n_nota', 'ponderaciones_ramos.P_nota',
+                                              'version_ramos.id_asignatura','version_ramos.year','version_ramos.semestre',
+                                              'asignaturas.nombre','asignaturas.id_malla')
+                                    ->orderBy('version_ramos.id_asignatura')
+                                    ->orderBy('notas.n_nota','ASC')
+                                    ->get();
+                                    
+    return response()->json($notasAsignaturaAlumno);
   }
 
   public function MensajeriaC(Request $request)

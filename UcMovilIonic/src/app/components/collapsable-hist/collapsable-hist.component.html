@@ -1,0 +1,53 @@
+<div *ngIf="this.listaCompleta.indexOf(ramo) === 0">
+  <ion-item>
+    <ion-label slot="start"> Año: </ion-label>
+    <ion-label slot="end"> {{ramo.year}} </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label slot="start"> Semestre: </ion-label>
+    <ion-label slot="end"> {{ramo.semestre}} </ion-label>
+  </ion-item>
+</div>
+
+<div *ngIf="this.listaCompleta.indexOf(ramo) !== 0">
+  <div *ngIf="this.listaCompleta[this.listaCompleta.indexOf(ramo)].year !== this.listaCompleta[this.listaCompleta.indexOf(ramo)-1].year
+                || this.listaCompleta[this.listaCompleta.indexOf(ramo)].semestre !== this.listaCompleta[this.listaCompleta.indexOf(ramo)-1].semestre">
+    <ion-item>
+      <ion-label slot="start"> Año: </ion-label>
+      <ion-label slot="end"> {{ramo.year}} </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="start"> Semestre: </ion-label>
+      <ion-label slot="end"> {{ramo.semestre}} </ion-label>
+    </ion-item>
+  </div>
+</div>
+
+<ion-card no-border>
+  <ion-card-header color ="light" class="blueBorder">
+    <ion-item color="light" button = "true" (click)="toggle()" [disabled]="inactivo">
+      <ion-text slot="start">{{ramo.nombre}}</ion-text>
+      <ion-icon slot="end" name="arrow-dropdown"></ion-icon>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content #CollapsableBlock>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <ion-segment scrollable>
+              <ion-grid>
+                <ion-row *ngFor="let item of ramo.datosNota">
+                  <div class="full">
+                    <ion-col size="4" *ngIf="item.nota%1 !== 0"> {{item.nota}} </ion-col>
+                    <ion-col size="4" *ngIf="item.nota%1 === 0"> {{item.nota}}.0 </ion-col>
+                    <ion-col size="4" *ngIf="item.ponderacion === 1"> Aprobado </ion-col>
+                    <ion-col size="4" *ngIf="item.ponderacion === 0"> Reprobado </ion-col>
+                  </div>
+                </ion-row>
+              </ion-grid>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

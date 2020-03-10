@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'ramos-impartidos', loadChildren: './pages/ramos-impartidos/ramos-impartidos.module#RamosImpartidosPageModule' },
   // tslint:disable-next-line: max-line-length
   { path: 'ingreso-ponderaciones', loadChildren: './pages/ingreso-ponderaciones/ingreso-ponderaciones.module#IngresoPonderacionesPageModule' },  { path: 'ingreso-notas', loadChildren: './pages/ingreso-notas/ingreso-notas.module#IngresoNotasPageModule' },
+  { path: 'hist-asignatura', loadChildren: './pages/hist-asignatura/hist-asignatura.module#HistAsignaturaPageModule' },
 
 
 

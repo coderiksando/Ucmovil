@@ -1,0 +1,11 @@
+<app-menu></app-menu>
+<app-header [titulo]="titulo" [botonRegresoCancelar]="botonRegresoCancelar"></app-header>
+
+<ion-content>
+  <ion-list *ngIf="this.histAsignatura" class="customPadding">
+    <app-collapsable-hist  *ngFor="let item of this.histAsignatura"
+                            [ramo]="item" [inactivo] = "inactivo"
+                            [listaCompleta]="this.histAsignatura">
+    </app-collapsable-hist>
+  </ion-list>
+</ion-content>

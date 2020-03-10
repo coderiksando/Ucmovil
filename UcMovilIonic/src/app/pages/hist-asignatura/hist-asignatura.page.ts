@@ -4,14 +4,15 @@ import { LoginService } from '../../services/login.service';
 import { ObjetoNota, InfoNota } from 'src/app/interfaces/interfaceNota';
 
 @Component({
-  selector: 'app-notas-alumnos',
-  templateUrl: './notas-alumnos.page.html',
-  styleUrls: ['./notas-alumnos.page.scss'],
+  selector: 'app-hist-asignatura',
+  templateUrl: './hist-asignatura.page.html',
+  styleUrls: ['./hist-asignatura.page.scss'],
 })
-export class NotasAlumnosPage implements OnInit {
+export class HistAsignaturaPage implements OnInit {
 
-  titulo = 'Notas asignatura';
+  titulo = 'Historial de asignaturas';
   notasAsignatura: ObjetoNota[] = [];
+  histAsignatura: ObjetoNota[] = [];
   objeto: ObjetoNota = {
     idAsignatura: '',
     nombre: '',
@@ -29,7 +30,7 @@ export class NotasAlumnosPage implements OnInit {
 
   async ngOnInit() {
     let url = this.loginService.urlServer;
-    url += 'RamosActuales' + '?id=' + this.loginService.datos.usuarios[0].id;
+    url += 'historialNotaAlumno' + '?id=' + this.loginService.datos.usuarios[0].id;
     this.httpClient.get(url).subscribe((response: any) => {
       let i = 0;
       response.notasAlumnoActual.forEach(dato => {
@@ -54,10 +55,37 @@ export class NotasAlumnosPage implements OnInit {
           this.notasAsignatura[i].datosNota.push(JSON.parse(JSON.stringify(this.infoNota)));
         }
       });
+
+      i = 0;
+      this.notasAsignatura.forEach(asignatura => {
+        let notaFinal = 0;
+        this.objeto.idAsignatura  = this.notasAsignatura[i].idAsignatura;
+        this.objeto.nombre        = this.notasAsignatura[i].nombre;
+        this.objeto.year          = this.notasAsignatura[i].year;
+        this.objeto.semestre      = this.notasAsignatura[i].semestre;
+        this.notasAsignatura[i].datosNota.forEach(element => {
+          notaFinal += (element.nota * element.ponderacion / 100);
+        });
+        notaFinal = Math.round(notaFinal * 10) / 10;
+        this.infoNota.nNota = 0;
+        this.infoNota.nota = notaFinal;
+        if (notaFinal >= 4) {
+          this.infoNota.ponderacion = 1;
+        } else {
+          this.infoNota.ponderacion = 0;
+        }
+        this.histAsignatura.push(JSON.parse(JSON.stringify(this.objeto)));
+        this.histAsignatura[i].datosNota.push(JSON.parse(JSON.stringify(this.infoNota)));
+        i += 1;
+      });
+
+      console.log(this.histAsignatura);
+
     }, err => {
       console.log(err);
     });
 
   }
+
 
 }

@@ -3,12 +3,13 @@ import { NotasService } from '../../services/notas.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-collapsable-grade',
-  templateUrl: './collapsable-grade.component.html',
-  styleUrls: ['./collapsable-grade.component.scss'],
+  selector: 'app-collapsable-hist',
+  templateUrl: './collapsable-hist.component.html',
+  styleUrls: ['./collapsable-hist.component.scss'],
 })
-export class CollapsableGradeComponent implements OnInit {
+export class CollapsableHistComponent implements OnInit {
 
+  @Input() listaCompleta: any;
   @Input() ramo: any;
   @Input() inactivo: boolean;
   @ViewChild('CollapsableBlock', {static: true}) cardContent: any;
@@ -32,5 +33,4 @@ export class CollapsableGradeComponent implements OnInit {
     }
     this.expanded = !this.expanded;
   }
-
 }

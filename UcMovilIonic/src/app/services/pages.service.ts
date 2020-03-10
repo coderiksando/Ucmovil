@@ -29,6 +29,11 @@ export class PagesService  {
         redirectTo: '/notas-alumnos'
       },
       {
+        icon: 'folder-open',
+        name: 'Historial de asignaturas',
+        redirectTo: '/hist-asignatura'
+      },
+      {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'

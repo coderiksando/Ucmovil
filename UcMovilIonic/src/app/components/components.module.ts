@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CollapsableComponent } from './collapsable/collapsable.component';
 import { ItemCollapsableComponent } from './item-collapsable/item-collapsable.component';
+import { CollapsableGradeComponent } from './collapsable-grade/collapsable-grade.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     MenuComponent,
     NavbarComponent,
     CollapsableComponent,
-    ItemCollapsableComponent
+    ItemCollapsableComponent,
+    CollapsableGradeComponent
   ],
   exports: [
     RouterModule,
@@ -27,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     MenuComponent,
     NavbarComponent,
     CollapsableComponent,
-    ItemCollapsableComponent
+    ItemCollapsableComponent,
+    CollapsableGradeComponent
   ],
   imports: [
     RouterModule,

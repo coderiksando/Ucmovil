@@ -1,0 +1,28 @@
+ion-item.top-10 {
+    margin-top: 5px !important;
+    border-radius: 5px !important;
+    border: 3px solid #0453fd;
+}
+ion-card-header.blueBorder {
+    border-radius: 5px !important;
+    border: 3px solid #0453fd;
+    padding: 0px 0px;
+}
+
+ion-card-content{
+    padding: 0px 0px;
+    max-height: 0px;
+}
+
+ion-input.visible{
+    border: 2px solid black;
+    background-color: rgb(221, 221, 221);
+    height: 30px;
+    width: 70px;
+    padding: 5px 5px 5px 5px !important;
+    text-align: center;
+}
+
+div.full{
+    width: 100% !important;
+}

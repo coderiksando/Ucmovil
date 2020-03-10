@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Middleware\Alumno;
 use App\RamosActuale;
 use App\Solicitude;
+use App\Nota;
 use Auth;
 
 class AlumnoController extends Controller
@@ -48,9 +49,18 @@ class AlumnoController extends Controller
 
     $NotasAlumno['notasAlumnoActual'] = DB::table('notas')
                                     ->join('version_ramos','version_ramos.id_ramo','notas.id_ramo')
-                                    ->select('version_ramos.*', 'notas.*')
-                                    ->whereIn('version_ramos.id_ramo', $ramosA)
+                                    ->join('asignaturas','version_ramos.id_asignatura','asignaturas.id_asignatura')
+                                    ->join('ponderaciones_ramos', function($join){
+                                      $join ->on('ponderaciones_ramos.id_ramo','version_ramos.id_ramo')
+                                            ->on('ponderaciones_ramos.N_nota','notas.n_nota');
+                                    })
+                                    ->whereIn('notas.id_ramo', $ramosA)
                                     ->where('notas.id_alumno',$request->id)
+                                    ->select( 'notas.nota','notas.n_nota', 'ponderaciones_ramos.P_nota',
+                                              'version_ramos.id_asignatura','version_ramos.year','version_ramos.semestre',
+                                              'asignaturas.nombre','asignaturas.id_malla')
+                                    ->orderBy('version_ramos.id_asignatura')
+                                    ->orderBy('notas.n_nota','ASC')
                                     ->get();
 
     return response()->json($NotasAlumno);

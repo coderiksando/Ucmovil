@@ -1,11 +1,10 @@
 <app-menu></app-menu>
 <app-header [titulo]="titulo" [botonRegresoCancelar]="botonRegresoCancelar"></app-header>
 
-<ion-content fixed class="ion-padding">
-  <ion-list *ngIf="this.notasAsignatura">
-    <ion-item *ngFor="let item of this.notasAsignatura.ramosactuale, let i = index" lines="none">
-      <ion-label *ngIf="corroborarNombre(this.notasAsignatura.ramosactuale, i)">{{item.nombre}}</ion-label>
-      <ion-note class="nota" color="primary" slot="end">{{item.nota}}</ion-note>
-    </ion-item>
+<ion-content>
+  <ion-list *ngIf="this.notasAsignatura" class="customPadding">
+    <app-collapsable-grade  *ngFor="let item of this.notasAsignatura" 
+                            [ramo]="item" [inactivo] = "inactivo">
+    </app-collapsable-grade>
   </ion-list>
 </ion-content>

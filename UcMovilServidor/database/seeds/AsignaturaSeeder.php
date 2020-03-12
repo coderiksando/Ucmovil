@@ -36,7 +36,7 @@ class AsignaturaSeeder extends Seeder
       ]);
       DB::table('asignaturas')->insert([
         'id_asignatura' => 'ICI-114',
-        'nombre' => 'introduccion a la lingenieria',
+        'nombre' => 'introduccion a la Ingenieria',
         'creditos' => '8',
         'posicion_x' => '1',
         'posicion_y' => '5',

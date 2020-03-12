@@ -1,0 +1,17 @@
+<app-menu></app-menu>
+<app-header [titulo]="titulo" [botonRegresoCancelar]="botonRegresoCancelar"></app-header>
+
+
+<ion-content>
+  <div *ngIf="this.chatsRespuesta" class="ion-padding">
+  <ion-card *ngFor="let item of this.chatsRespuesta.ramos" button="true" (click)="entrar( item )">
+      <ion-card-title> 
+        <div></div>
+
+        <ion-icon name="chatbubbles"></ion-icon> 
+        {{item.nombre}} 
+      </ion-card-title>
+      <br>
+  </ion-card>
+</div>
+</ion-content>

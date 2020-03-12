@@ -24,6 +24,11 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
+        icon: 'chatboxes',
+        name: 'Chat',
+        redirectTo: '/chat'
+      },
+      {
         icon: 'stats',
         name: 'Notas asignatura',
         redirectTo: '/notas-alumnos'
@@ -48,6 +53,11 @@ export class PagesService  {
         icon: 'alert',
         name: 'Profesor',
         redirectTo: '/noValido'
+      },
+      {
+        icon: 'chatboxes',
+        name: 'Chat',
+        redirectTo: '/chat'
       },
       {
         icon: 'business',

@@ -20,7 +20,7 @@ class RamosActualesSeeder extends Seeder
 
         $ramos = VersionRamo::all()->pluck('id_ramo');
         foreach ($ramos as $id) {
-            $alumnos = Alumno::all()->random(20)->pluck('id');
+            $alumnos = Alumno::all()->pluck('id');
             foreach ($alumnos as $id_alumno) {
                 factory(RamosActuale::class)->create([
                     'id_ramo' => $id,

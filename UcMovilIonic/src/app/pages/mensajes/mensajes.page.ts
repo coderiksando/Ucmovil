@@ -13,6 +13,7 @@ import { ItemCollapsableComponent } from 'src/app/components/item-collapsable/it
 })
 export class MensajesPage implements OnInit {
   titulo = 'Mensajes';
+  mensajesRespuesta: any;
   
   constructor(public menuComponent: MenuComponent,
     public loginService: LoginService, public router: Router,
@@ -22,6 +23,16 @@ export class MensajesPage implements OnInit {
     if (this.staticDataService.chatsALeer != undefined){
       this.titulo += " " + this.staticDataService.chatsALeer.nombre;
     }
+
+    let url = this.loginService.urlServer;
+    url += 'alumnos/MensajesC' + '?id_destinatario=' + this.staticDataService.chatsALeer.id_asignatura;
+    this.httpClient.get(url).subscribe((response: any) => {
+      console.log(response);
+      this.mensajesRespuesta = response;
+    }, err => {
+      console.log(err);
+    });
+    
   }
 
 }

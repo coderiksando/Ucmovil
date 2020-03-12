@@ -50,6 +50,11 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
+        icon: 'chatboxes',
+        name: 'Chat',
+        redirectTo: '/chat'
+      },
+      {
         icon: 'business',
         name: 'Ramos Impartidos',
         redirectTo: '/ramos-impartidos'

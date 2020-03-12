@@ -22,7 +22,10 @@ export class ChatPage implements OnInit {
 
   async ngOnInit() {
     let url = this.loginService.urlServer;
-    url += 'alumnos/MensajeriaC' + '?id=' + this.loginService.datos.usuarios[0].id;
+    if(this.loginService.datos.usuarios[0].tipo == 'alumno')
+      url += 'alumnos/MensajeriaC' + '?id=' + this.loginService.datos.usuarios[0].id;
+    if(this.loginService.datos.usuarios[0].tipo == 'profesor')
+      url += 'profesores/MensajeriaC' + '?id=' + this.loginService.datos.usuarios[0].id;
     this.httpClient.get(url).subscribe((response: any) => {
       this.chatsRespuesta = response;
     }, err => {

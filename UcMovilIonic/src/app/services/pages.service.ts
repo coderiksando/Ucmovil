@@ -45,14 +45,14 @@ export class PagesService  {
         redirectTo: '/noValido'
       },
       {
-        icon: 'power',
-        name: 'Finalizar sesión',
-        redirectTo: '/login'
-      },
-      {
         icon: 'business',
         name: 'Ramos Impartidos',
         redirectTo: '/ramos-impartidos'
+      },
+      {
+        icon: 'power',
+        name: 'Finalizar sesión',
+        redirectTo: '/login'
       }
     );
   }
@@ -79,6 +79,11 @@ export class PagesService  {
         icon: 'compass',
         name: 'Asignación de salas',
         redirectTo: '/asignacion-sala'
+      },
+      {
+        icon: 'business',
+        name: 'Ramos Impartidos',
+        redirectTo: '/ramos-impartidos'
       },
       {
         icon: 'power',

@@ -28,6 +28,7 @@ class ProfesorController extends Controller
     {
       $impartidos =   DB::table('version_ramos')
                                     ->join('asignaturas', ['version_ramos.id_asignatura' => 'asignaturas.id_asignatura'])
+                                    ->where('id_profesor', $request->id)
                                     ->select('version_ramos.id_ramo', 'version_ramos.id_asignatura', 'version_ramos.year', 'asignaturas.nombre', 'version_ramos.semestre')->get();
       return response()->json($impartidos);
 	  }
@@ -76,8 +77,13 @@ class ProfesorController extends Controller
     }
 
     public function obtener_horario(Request $request){
-      $RamosArray = VersionRamo::where('id_profesor', $request->id_profe)->pluck('id_ramo');
-      $Horarios["horarios"] = DB::table('horarios')
+      if ($request->tipo == "alumno") {
+        $RamosArray = RamosActuale::where('id_alumno', $request->id)->pluck('id_ramo');
+      } else {
+        $RamosArray = VersionRamo::where('id_profesor', $request->id)->pluck('id_ramo');
+      }
+      
+      $Horarios = DB::table('horarios')
       ->join('version_ramos', ['horarios.id_ramo' => 'version_ramos.id_ramo'])
       ->join('asignaturas', ['version_ramos.id_asignatura' => 'asignaturas.id_asignatura'])
       ->select('nombre', 'asignaturas.id_asignatura', 'modulo', 'sala', 'dia')

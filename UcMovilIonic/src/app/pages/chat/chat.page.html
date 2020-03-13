@@ -6,10 +6,8 @@
   <div *ngIf="this.chatsRespuesta" class="ion-padding">
   <ion-card *ngFor="let item of this.chatsRespuesta.ramos" button="true" (click)="entrar( item )">
       <ion-card-title> 
-        <div></div>
-
         <ion-icon name="chatbubbles"></ion-icon> 
-        {{item.nombre}} 
+        {{item.nombre}}
       </ion-card-title>
       <br>
   </ion-card>

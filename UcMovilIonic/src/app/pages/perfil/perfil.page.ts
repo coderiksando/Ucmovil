@@ -17,7 +17,7 @@ export class PerfilPage implements OnInit {
   savePhone = false;  // Booleano que activa el boton de guardado de telefono.
   tabla: any[][][] = [];  // Cubo que guarda los horarios ocupados.
   dias = {Lunes: 0, Martes: 1, Miercoles: 2, Jueves: 3, Viernes: 4};  // Aisgnacion de valor numerico a los dias de la semana.
-
+  horas = ['8:30', '9:35', '10:50', '11:55', '13:10', '14:30', '15:35', '16:50', '17:55', '19:10', '20:15', '21:20'];
   constructor(private loginService: LoginService,
               private perfilService: PerfilService,
               private horariosService: HorariosService,

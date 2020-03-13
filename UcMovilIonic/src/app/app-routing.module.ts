@@ -30,11 +30,9 @@ const routes: Routes = [
   { path: 'hist-asignatura', loadChildren: './pages/hist-asignatura/hist-asignatura.module#HistAsignaturaPageModule' },
 
   //Chat
-  
   { path: 'chat', loadChildren: './pages/chat/chat.module#ChatPageModule' },
   { path: 'mensajes', loadChildren: './pages/mensajes/mensajes.module#MensajesPageModule' },
 
-  
 
 ];
 

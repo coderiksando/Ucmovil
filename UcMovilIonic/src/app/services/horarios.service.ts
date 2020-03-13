@@ -12,7 +12,7 @@ export class HorariosService {
   getHorarios() {
     let url = this.loginService.urlServer;
     const user = this.loginService.datosDetalle[0];
-    url += '/profesor/obtener_horario' + '?id=' + user.id + '&tipo=' + user.tipo;
+    url += 'profesor/obtener_horario' + '?id=' + user.id + '&tipo=' + user.tipo;
     return this.http.get(url);
   }
 }

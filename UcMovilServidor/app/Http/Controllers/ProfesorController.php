@@ -82,7 +82,6 @@ class ProfesorController extends Controller
       } else {
         $RamosArray = VersionRamo::where('id_profesor', $request->id)->pluck('id_ramo');
       }
-      
       $Horarios = DB::table('horarios')
       ->join('version_ramos', ['horarios.id_ramo' => 'version_ramos.id_ramo'])
       ->join('asignaturas', ['version_ramos.id_asignatura' => 'asignaturas.id_asignatura'])

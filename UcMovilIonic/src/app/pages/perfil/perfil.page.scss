@@ -47,3 +47,16 @@ ion-button.btn-bot{
     height: 100%;
     width: 100%;
 }
+
+ion-row.tableRow{
+    border: 2px solid black;
+    min-height: 1.2rem;
+}
+ion-col.tableCol{
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+ion-button.btn-horario{
+    height: 1.2rem;
+}

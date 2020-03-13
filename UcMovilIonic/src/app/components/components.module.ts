@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     MenuComponent,
     NavbarComponent,
     CollapsableComponent,
-    ItemCollapsableComponent
+    ItemCollapsableComponent,
   ],
   imports: [
     RouterModule,

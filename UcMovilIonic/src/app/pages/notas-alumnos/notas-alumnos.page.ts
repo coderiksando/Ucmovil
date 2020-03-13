@@ -27,7 +27,7 @@ export class NotasAlumnosPage implements OnInit {
 
   }
 
-  corroborarNombre(ramosActuales, index){
+  corroborarNombre(ramosActuales, index) {
     if (index === 0) {
       return true;
     }

@@ -139,13 +139,13 @@ class ProfesorController extends Controller
     }
     public function Mensajes(Request $request)
     {
-      $MensajesChat["chat"] = DB::table('chat')->where('id_remitente', $request->id_remitente)->where('id_destinatario', $request->id_destinatario)->orwhere('id_remitente', $request->id_destinatario)->where('id_destinatario', $request->id_remitente)->get();
+      $MensajesChat = DB::table('chats')->where('id_remitente', $request->id_remitente)->where('id_destinatario', $request->id_destinatario)->orwhere('id_remitente', $request->id_destinatario)->where('id_destinatario', $request->id_remitente)->get();
 
       return response()->json($MensajesChat);
     }
     public function MensajesC(Request $request)
     {
-      $MensajesChat["chat"] = DB::table('chat')->where('id_destinatario', $request->id_destinatario)->get();
+      $MensajesChat = DB::table('chats')->where('id_destinatario', $request->id_destinatario)->get();
       
       return response()->json($MensajesChat);
     }

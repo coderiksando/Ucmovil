@@ -24,9 +24,9 @@ export class ModalSalaPage implements OnInit {
                 public loginService: LoginService, public alertController: AlertController ) { }
 
   ngOnInit() {
-    // console.log(this.ramoVersion);
   }
 
+  // Esta función solo quita de pantalla el modal
   envioSala( profesor: any ) {
     // this.profesorElegido = profesor;
     this.modalController.dismiss({
@@ -35,13 +35,17 @@ export class ModalSalaPage implements OnInit {
     });
   }
 
+  // Reliza una busqueda de los horarios de la sala en la cual están ocupados
+  // Para luego hacer comprobaciones del sector que se puede o no guardar
   async busquedaModulos() {
+    // se dejan en null los array para realizar posteriormente comprobaciones
     this.modulosOcupados = [];
     this.modulosDisponibles = [];
     this.modulosAPartir = [];
     this.cantidadModulos = null;
     let url = this.loginService.urlServer;
     url += '/d_escuela/busqueda_sala?numero_sala=' + this.sala + '&dia=' + this.dia;
+    // Se realiza la petición de la sala y devuelve todos los modulos ocupados en ese instante
     this.httpClient.get(url).subscribe(async (response: any) => {
       this.modulosOcupados = response;
       // consigue los modulos que están ocupados en un mapeo
@@ -68,11 +72,13 @@ export class ModalSalaPage implements OnInit {
     });
   }
 
+  // Esta función se llama cada vez que se inserta el modulo desde donde iniciará la reserva
   inicioModulo($event) {
     this.modulosAPartir = [];
     this.cantidadModulos = null;
     this.posicionModuloInicio = this.modulosDisponibles.indexOf($event.detail.value.toString());
     let i = 0;
+    // revisa cuantos modulos están disponibles hasta poder parar
     while (
       (Number(this.modulosDisponibles[this.posicionModuloInicio + i]) === this.modulosDisponibles[this.posicionModuloInicio + i + 1] - 1)
       && (this.posicionModuloInicio + i < this.modulosDisponibles.length)
@@ -80,11 +86,13 @@ export class ModalSalaPage implements OnInit {
       i += 1;
     }
     i += 1;
+    // realiza una cantidad de opciones de modulos para el dropdown
     for (let index = 1; index <= i; index++) {
       this.modulosAPartir.push(index);
     }
   }
 
+  // Acá se reserva la sala, el inicio del modulo y la cantidad de modulos correlativos
   async enviarHorario() {
     let url: string;
     url = this.loginService.urlServer;
@@ -92,6 +100,7 @@ export class ModalSalaPage implements OnInit {
     url += '&modulo=' + Number(this.modulosDisponibles[this.posicionModuloInicio]) + '&dia=' + this.dia;
     url += '&sala=' + this.sala + '&estado=Aceptada' + '&cantidadCorrelativa=' + this.cantidadModulos;
     this.httpClient.get(url).subscribe(async (response: any) => {
+      // crea alertas si todo está bien y se ha ingresado correctamente
       const alert = await this.alertController.create({
         header: 'Éxito',
         subHeader: 'Petición de sala',
@@ -103,6 +112,7 @@ export class ModalSalaPage implements OnInit {
         dismissed: true
       });
     }, async err => {
+      // crea una sala si hay un error, por ejemplo solapamiento de las reservas de esta sala
       const alert = await this.alertController.create({
         header: 'Perdón',
         subHeader: 'Petición de sala',

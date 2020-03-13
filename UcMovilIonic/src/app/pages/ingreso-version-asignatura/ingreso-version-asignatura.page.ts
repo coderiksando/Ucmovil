@@ -31,6 +31,7 @@ export class IngresoVersionAsignaturaPage implements OnInit {
                 public ramosService: RamosService, public alertController: AlertController,
                 public http: HttpClient, public loginService: LoginService ) { }
 
+  // Hago la busqueda de los ramos y profesores para luego hacer nuevas versiones de ramos
   async ngOnInit() {
     await this.ramosService.peticionRamos();
     await this.profesoresService.peticionProfesores();
@@ -39,6 +40,8 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     this.versionRamo.semestre = 1;
   }
 
+  // Creo un modal con todos los profesores disponibles y luego de la selección ingreso al profesor,
+  // además cierro el modal para no tener inconvenientes
   async modalProfesor() {
     const modal = await this.modalController.create({
       component: ModalProfesorPage
@@ -52,6 +55,8 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     return await modal.present();
   }
 
+  // Creo un modal con todos las asignaturas y luego de la selección ingreso la asignatura a la variable,
+  // además cierro el modal para no tener inconvenientes
   async modalRamo() {
     const modal = await this.modalController.create({
       component: ModalRamoPage
@@ -65,6 +70,7 @@ export class IngresoVersionAsignaturaPage implements OnInit {
     return await modal.present();
   }
 
+  // En esta función envío todos los datos requeridos por el servidor a través de un metodo get
   async envioVersionRamo() {
     let url = this.loginService.urlServer;
     url += 'd_escuela/anadir_profesor_ramo';

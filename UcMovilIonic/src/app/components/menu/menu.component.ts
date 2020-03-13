@@ -11,6 +11,8 @@ import { StaticDataService } from '../../services/static-data.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit, AfterViewInit {
+  // Crea un menu en un componente para ser llamado de forma fácil desde 
+  // todas las páginas que usen a este componente
 
   lista = [];
 
@@ -18,6 +20,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
               public loginService: LoginService, public router: Router, public platform: Platform,
               public staticDataService: StaticDataService ) { }
 
+  // Realiza una verificacion del tipo de usuario y llama la funcion
+  // para traer los datos de pages services
   ngOnInit() {
     this.lista = this.pagesService.componentes;
     if (this.loginService.datos !== undefined) {
@@ -34,17 +38,20 @@ export class MenuComponent implements OnInit, AfterViewInit {
         this.pagesService.paginaDirector();
       }
     } else {
+      // si no cumple con ningún registro lo reenvía al login
       this.router.navigateByUrl('/login');
     }
   }
 
   ngAfterViewInit() { }
 
+  // Crea las opciones del menu al desplazar el dedo
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
 
+  // Limpia los datos del servicio
   limpiezaMenu() {
     this.staticDataService.noticiaObjetoEditar = undefined;
   }

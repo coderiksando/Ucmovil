@@ -8,7 +8,9 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./collapsable-grade.component.scss'],
 })
 export class CollapsableGradeComponent implements OnInit {
+  // Colapsable que renderiza todas las notas de los alumnos en una version de asignatura
 
+  // En la variable ramo se entrega los datos del objeto que debe renderizarse
   @Input() ramo: any;
   @Input() inactivo: boolean;
   @ViewChild('CollapsableBlock', {static: true}) cardContent: any;
@@ -18,10 +20,12 @@ export class CollapsableGradeComponent implements OnInit {
               private notasService: NotasService,
               public alertController: AlertController) { }
 
+  // Iniciliza las transiciones de estilo del componente en un tiempo de 0.5 seg
   ngOnInit() {
     this.renderer.setStyle(this.cardContent.el, 'webkitTransition', 'max-height 500ms, padding 500ms');
   }
 
+  // Realiza cambios en el scss de los componentes para cambiar sus estilos
   toggle() {
     if (this.expanded) {
       this.renderer.setStyle(this.cardContent.el, 'max-height', '0px');

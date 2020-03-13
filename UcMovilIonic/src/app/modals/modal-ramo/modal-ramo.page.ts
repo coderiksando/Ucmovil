@@ -18,15 +18,18 @@ export class ModalRamoPage implements OnInit {
   ngOnInit() {
   }
 
+  // Esta funcion realiza la selección de la asignatura
   seleccionRamo( ramo: any ) {
     this.ramoElegido = ramo;
     this.idRamoElegido = ramo.id_asignatura;
+    // cuando lo clickea quita al modal de la pantalla
     this.modalController.dismiss({
       dismissed: true,
       extraccion: this.ramoElegido
     });
   }
 
+  // Solo quita el modal de la pantalla
   cerrarModal() {
     this.modalController.dismiss({
       dismissed: true

@@ -17,14 +17,17 @@ export class ModalProfesorPage implements OnInit {
   ngOnInit() {
   }
 
+  // Esta funcion realiza la selección del profesor
   seleccionProfesor( profesor: any ) {
     this.profesorElegido = profesor;
+    // cuando lo clickea quita al modal de la pantalla
     this.modalController.dismiss({
       dismissed: true,
       extraccion: this.profesorElegido
     });
   }
 
+  // Solo quita el modal de la pantalla
   cerrarModal() {
     this.modalController.dismiss({
       dismissed: true

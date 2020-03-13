@@ -25,26 +25,31 @@ export class LobbyPage implements OnInit {
   ngOnInit() {
   }
 
+  // Obtiene la fecha del servidor de un DateTime
   getDate(fecha) {
     const fechasCompleta = fecha.split(' ');
     const fechas = fechasCompleta[0].split('-');
     return fechas;
   }
 
+  // Obtiene el tiempo del servidor de un DateTime
   getTime(fecha) {
     const fechasCompleta = fecha.split(' ');
     return fechasCompleta[1];
   }
 
+  // Refresca las noticias a través de una función de un servicio
   async refrescarNoticias(event) {
     await this.newsService.refrescarNoticias(event);
   }
 
+  // Redirige a la pagina de ingreso de noticias y carga los datos para editar
   edit( noticia ) {
     this.staticDataService.noticiaObjetoEditar = noticia;
     this.router.navigateByUrl('ingreso-noticia');
   }
 
+  // Envía por metodo get la noticia que debe eliminarse
   async delete( noticia ) {
     const alert = await this.alertController.create({
       header: 'Borrar noticia',

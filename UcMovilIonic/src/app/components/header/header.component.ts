@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  // Este componente será un header el cual puede poseer un boton de retroceso y un titulo
 
   @Input() titulo: string;
   @Input() botonRegresoCancelar: boolean;

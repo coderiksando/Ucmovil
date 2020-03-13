@@ -27,6 +27,8 @@ export class IngresoNoticiaPage implements OnInit {
   constructor(  public menuComponent: MenuComponent, public loginService: LoginService,
                 public newsService: NewsService, public staticDataService: StaticDataService ) { }
 
+  // Inicializo los datos a null o tomo los datos a editar y cargar que se necesitarán 
+  // para ingresar la noticia
   ngOnInit() {
     if ( this.staticDataService.noticiaObjetoEditar !== undefined ) {
       this.noticia.titulo = this.staticDataService.noticiaObjetoEditar.titulo;
@@ -39,6 +41,7 @@ export class IngresoNoticiaPage implements OnInit {
     this.noticia.estado = 'Aprobada';
   }
 
+  // Es una función estética, esta divide la fecha DateTime en varias secciones
   obtenerFecha() {
     let fecha: string;
     const year = (this.noticia.fecha.getFullYear()).toString();
@@ -52,6 +55,7 @@ export class IngresoNoticiaPage implements OnInit {
     return fecha;
   }
 
+  // Funcion estetica que obtiene de un DateTime la hora
   obtenerHora() {
     let time: string;
     let hours = (this.noticia.fecha.getHours()).toString();
@@ -70,6 +74,7 @@ export class IngresoNoticiaPage implements OnInit {
     return time;
   }
 
+  // en esta función se envían a travé sde un servicio los datos que se querian cambiar o ingresar
   async envioNoticia() {
     await this.newsService.sendNew(this.noticia);
     await this.newsService.cargarNoticias();

@@ -51,7 +51,6 @@ export class NewsService {
     url += '/secretaria/agregar_noticia' + '?titulo=' + noticia.titulo + '&texto='
         +   noticia.texto +  '&estado=' +   noticia.estado + '&propietario=' + noticia.propietario
         +   '&id_noticia=' + noticia.id_noticia;
-    // console.log(url);
     // envia datos por metodo get
     this.httpClient.get(url).subscribe(async (response: any) => {
         this.respuestaEnvio = response;

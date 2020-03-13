@@ -25,7 +25,6 @@ export class PonderacionesService {
       url += '&P_nota' + i + '=' + pond;
       i++;
     });
-    // console.log(url);
     return this.http.get(url);
   }
 }

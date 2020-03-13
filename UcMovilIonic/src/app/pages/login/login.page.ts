@@ -23,6 +23,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  // Envía los datos del usuario a el servicio de login y posteriormente realiza una carga de las noticias
   async onSubmitTemplate() {
     await this.loginService.logAccount(this.usuario.email, this.usuario.password);
     await this.newsService.cargarNoticias();

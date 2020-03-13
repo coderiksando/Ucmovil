@@ -1,0 +1,21 @@
+<ion-content>
+<ion-grid style="padding: 1rem !important;">
+    <ion-row *ngFor="let horario of horarios" class="blueborder">
+      <ion-row class="fullrow">
+        <ion-col size="12">
+          <ion-text>Ramo: {{horario.nombre}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fullrow">
+        <ion-col size="12">
+          <ion-text>Codigo: {{horario.id_asignatura}}</ion-text>
+        </ion-col>
+      </ion-row> 
+      <ion-row class="fullrow">
+        <ion-col size="12">
+          <ion-text>Sala: {{horario.sala}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+</ion-grid>
+</ion-content>

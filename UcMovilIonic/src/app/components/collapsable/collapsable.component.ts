@@ -17,6 +17,7 @@ export class CollapsableComponent implements OnInit {
   @ViewChild('CollapsableBlock', {static: true}) cardContent: any;
   expanded = false;
   arrayNotas: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  outOfRange = false;
 
   constructor(public renderer: Renderer2,
               private notasService: NotasService,
@@ -42,20 +43,29 @@ export class CollapsableComponent implements OnInit {
   }
 
   onSave() {
-    this.notasService.setNotas(this.arrayNotas, this.ramo, this.alumno.id).subscribe((response: any) => {
-      if (response === 200) {
-        this.presentSuccesAlert();
-      } else {
-        this.presentErrorAlert();
+    this.outOfRange = false;
+    this.arrayNotas.forEach(element => {
+      if (element < 1 || element > 7) {
+        this.outOfRange = true;
       }
     });
+    if (this.outOfRange) {
+      this.presentErrorAlert();
+    } else {
+      this.notasService.setNotas(this.arrayNotas, this.ramo, this.alumno.id).subscribe((response: any) => {
+        if (response === 200) {
+          this.presentSuccesAlert();
+        } else {
+          this.presentErrorAlert();
+        }
+      });
+    }
   }
-
   async presentErrorAlert() {
     const alert = await this.alertController.create({
       header: 'Error',
       subHeader: 'No es posible almacenar las notas',
-      message: 'Se ha producido un error desconocido, por favor intentenlo nuevamente.',
+      message: 'Las notas deben tener un valor entre 1 y 7.',
       animated: true,
       buttons: [
         {

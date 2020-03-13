@@ -1,9 +1,75 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Perfil"></app-header>
+<ion-content class="ion-no-padding">
+  <ion-grid>
+    <ion-row class="centro">
+      <ion-col size="12" class="centro">
+        <ion-img class="chiquita" src="../../../assets/UcmLogo.png"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row class="centro">
+      <ion-col size="12">
+        <ion-text class="centro">{{usuario.nombre}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="centro">
+      <ion-col>
+        <ion-text class="sub">{{usuario.subtxt}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="2" class="ion-align-self-center">
+        <ion-label position="fixed" style="font-size: 0.9rem;">Email</ion-label>
+      </ion-col>
+      <ion-col size="8" class="ion-align-self-center">
+        <ion-input type="email" class="perfil" [(ngModel)]="usuario.email" [disabled]="!saveEmail"></ion-input>
+      </ion-col>
+      <ion-col size="2" class="ion-align-self-center">
+        <ion-button *ngIf="!saveEmail" size="medium" color="warning" expand="block" (click)="toggleEmail()">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="saveEmail" size="medium" color="success" expand="block" (click)="guardarEmail()">
+          <ion-icon slot="icon-only" name="save"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-self-center">
+      <ion-col size="2" class="ion-align-self-center">
+        <ion-label position="fixed" style="font-size: 0.9rem;">Celular</ion-label>
+      </ion-col>
+      <ion-col size="8" class="ion-align-self-center">
+        <ion-input type="tel" class="perfil" [(ngModel)]="usuario.telefono" [disabled]="!savePhone"></ion-input>
+      </ion-col>
+      <ion-col size="2" class="ion-align-self-center">
+        <ion-button *ngIf="!savePhone" size="medium" color="warning" expand="block" (click)="togglePhone()">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="savePhone" size="medium" color="success" expand="block" (click)="guardarPhone()">
+          <ion-icon slot="icon-only" name="save"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-card>
+        <ion-card-header color="primary">Horario</ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="tableRow align-self-center">
+              <ion-col class="tableCol">L</ion-col>
+              <ion-col class="tableCol">M</ion-col>
+              <ion-col class="tableCol">Mi</ion-col>
+              <ion-col class="tableCol">J</ion-col>
+              <ion-col class="tableCol">V</ion-col>
+            </ion-row>
+            <ion-row class="tableRow" *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]">
+              <ion-col class="tableCol ion-no-padding" *ngFor="let j of [0,1,2,3,4]">
+                <ion-button *ngIf="tabla[j][i].length == 1" class="btn-horario" expand="full" color="primary" (click)="onClick(tabla[j][i])"></ion-button>
+                <ion-button *ngIf="tabla[j][i].length > 1" class="btn-horario" expand="full" color="warning" (click)="onClick(tabla[j][i])"></ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
 
-<ion-content>
-
+  </ion-grid>
 </ion-content>

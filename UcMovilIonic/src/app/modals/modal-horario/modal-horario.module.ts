@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PerfilPage } from './perfil.page';
-import { ComponentsModule } from '../../components/components.module';
+import { ModalHorarioPage } from './modal-horario.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PerfilPage
+    component: ModalHorarioPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    ComponentsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [PerfilPage]
+  declarations: [ModalHorarioPage]
 })
-export class PerfilPageModule {}
+export class ModalHorarioPageModule {}

@@ -25,6 +25,7 @@ Route::get('/datos_p', 'HomeController@datos_p')->name('p_tipo');
 Route::get('/cambioC', 'HomeController@cambioC')->name('cambioC');
 Route::get('/cambioA', 'HomeController@cambioA')->name('cambioA');
 Route::get('/cambioE', 'HomeController@cambioE')->name('cambioE');
+Route::get('/modificarPerfil', 'HomeController@modificarPerfil');
 
 Route::get('/profesores/Mensajeria', 'ProfesorController@Mensajeria');
 Route::get('/profesores/MensajeriaExtra', 'ProfesorController@MensajeriaExtra');

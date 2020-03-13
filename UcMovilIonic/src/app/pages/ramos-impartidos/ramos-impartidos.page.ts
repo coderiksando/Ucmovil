@@ -10,22 +10,21 @@ import { Router } from '@angular/router';
 })
 export class RamosImpartidosPage implements OnInit {
 
-  ramosImpartidos: any[];
-  id: any;
-  nombre: any;
+  ramosImpartidos: any[];   // Array de ramos impartidos por el profesor.
+  id: any;                  // Id del profesor
+  nombre: any;              // Nombre del ramo
 
   // tslint:disable-next-line: max-line-length
   constructor(public navCtrl: NavController, private ramosImpartidosServices: RamosImpartidosService, public alertController: AlertController, private router: Router) { }
 
   ngOnInit() {
-
+    // Al iniciar se cargan los ramos impartidos desde la base de datos.
     this.ramosImpartidosServices.getRamosImpartidos().subscribe( (ramos: any[]) => {
-      // console.log(ramos);
       this.ramosImpartidos = ramos;
     });
   }
 
-
+  // Alerta que se presenta al hacer click en un ramo para ver las opciones.
   async opcionesAlert(ramo) {
     this.id = ramo.id_ramo;
     this.nombre = ramo.nombre;
@@ -35,13 +34,13 @@ export class RamosImpartidosPage implements OnInit {
       buttons: [
         {
           text: 'Ponderaciones',
-          handler: () => {
+          handler: () => {          // Redireccion con parametros a la pagina de ponderaciones.
             this.router.navigate(['/ingreso-ponderaciones'], { queryParams: { id: this.id, nombre: this.nombre } });
             }
         },
         {
           text: 'Notas',
-          handler: () => {
+          handler: () => {        // Redireccion con parametros a la pagina de notas.
             this.router.navigate(['/ingreso-notas'], { queryParams: { id: this.id, nombre: this.nombre } });
             }
         }

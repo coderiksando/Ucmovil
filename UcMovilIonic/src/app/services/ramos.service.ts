@@ -11,12 +11,12 @@ export class RamosService {
 
   constructor( private http: HttpClient, private loginService: LoginService ) { }
 
+  // Realiza una busqueda de todos los ramos, está asociada a la función de crear una version de ramo
   async peticionRamos() {
     let url = this.loginService.urlServer;
     url += 'd_escuela/mostrar_asignatura';
     this.http.get(url).subscribe((response: any) => {
       this.ramos = response;
-      // console.log(this.ramos);
     }, err => {
       console.log(err);
     });

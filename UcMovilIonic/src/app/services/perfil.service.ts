@@ -9,6 +9,7 @@ export class PerfilService {
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
+  // Se ingresan los datos del usuario que necesita editar el email
   setEmail(email: string) {
     let url = this.loginService.urlServer;
     const user = this.loginService.datosDetalle[0];
@@ -16,6 +17,7 @@ export class PerfilService {
     return this.http.get(url);
   }
 
+  // Se ingresan los datos del telefono del usuario que desea editar
   setPhone(phone: string) {
     let url = this.loginService.urlServer;
     const user = this.loginService.datosDetalle[0];

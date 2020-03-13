@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+// en este sector se ingresan todas las paginas para hacer un lazy load de cada una de ellas
 const routes: Routes = [
   // redirección de paginas no fijadas
   { path: '', redirectTo: 'login', pathMatch: 'full' },

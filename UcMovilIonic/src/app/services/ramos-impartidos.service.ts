@@ -9,10 +9,10 @@ export class RamosImpartidosService {
 
   constructor( private http: HttpClient, private loginService: LoginService) { }
 
+  // Obtiene todos los datos de los ramos impartidos por un profesor
   getRamosImpartidos() {
     let url = this.loginService.urlServer;
     url += 'ramos_impartidos' + '?id=' + this.loginService.datosDetalle[0].id;
-   // url += 'ramos_impartidos' + '?id=' + 2;
     return this.http.get(url);
   }
 }

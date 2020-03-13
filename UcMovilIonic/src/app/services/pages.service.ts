@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class PagesService  {
 
+  // Se realiza una inicilización de las páginas, iniciando con el perfil,
+  // ya que es necesario en todos los roles
   componentes: any = [
     {
       icon: 'person',
@@ -15,14 +17,11 @@ export class PagesService  {
 
   constructor() { }
 
+  // Ajusta las paginas de alumnos con sus 3 componentes necesarios, icono, nombre y redirección
+  // deben estar ingresados estas paginas en app-routing.module.ts
   paginaAlumno() {
     this.componentes.length = 1;
     this.componentes.push(
-      {
-        icon: 'alert',
-        name: 'Alumno',
-        redirectTo: '/noValido'
-      },
       {
         icon: 'chatboxes',
         name: 'Chat',
@@ -46,14 +45,10 @@ export class PagesService  {
     );
   }
 
+  // Ajusta las paginas de profesor
   paginaProfesor() {
     this.componentes.length = 1;
     this.componentes.push(
-      {
-        icon: 'alert',
-        name: 'Profesor',
-        redirectTo: '/noValido'
-      },
       {
         icon: 'chatboxes',
         name: 'Chat',
@@ -72,14 +67,10 @@ export class PagesService  {
     );
   }
 
+  // Ajusta las paginas de director
   paginaDirector() {
     this.componentes.length = 1;
     this.componentes.push(
-      {
-        icon: 'alert',
-        name: 'Director',
-        redirectTo: '/noValido'
-      },
       {
         icon: 'paper',
         name: 'Ingreso de noticias',
@@ -99,46 +90,11 @@ export class PagesService  {
         icon: 'power',
         name: 'Finalizar sesión',
         redirectTo: '/login'
-      }/*,
-      {
-        icon: 'compass',
-        name: 'XXX',
-        subElemento: [
-          {
-            name: 'XXXXXXXX',
-            redirectTo: '/asignacion-sala'
-          },
-          {
-            name: 'XXXXXXXX',
-            redirectTo: '/asignacion-sala'
-          },
-          {
-            name: 'XXXXXXXX',
-            redirectTo: '/asignacion-sala'
-          }
-        ]
-      },
-      {
-        icon: 'compass',
-        name: 'YYY',
-        subElemento: [
-          {
-            name: 'YYYYYYYY',
-            redirectTo: '/asignacion-sala'
-          },
-          {
-            name: 'YYYYYYYY',
-            redirectTo: '/asignacion-sala'
-          },
-          {
-            name: 'YYYYYYYY',
-            redirectTo: '/asignacion-sala'
-          }
-        ]
-      }*/
+      }
     );
   }
 
+  // Ajusta las paginas de secretaria
   paginaSecretaria() {
     this.componentes.length = 1;
     this.componentes.push(

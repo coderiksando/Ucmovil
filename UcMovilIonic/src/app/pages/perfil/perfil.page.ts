@@ -12,11 +12,11 @@ import { ModalHorarioPage } from '../../modals/modal-horario/modal-horario.page'
 })
 export class PerfilPage implements OnInit {
 
-  usuario: any;
-  saveEmail = false;
-  savePhone = false;
-  tabla: any[][][] = [];
-  dias = {Lunes: 0, Martes: 1, Miercoles: 2, Jueves: 3, Viernes: 4};
+  usuario: any;       // Objeto con los datos del usuario activo.
+  saveEmail = false;  // Booleano que activa el boton de guardado de email.
+  savePhone = false;  // Booleano que activa el boton de guardado de telefono.
+  tabla: any[][][] = [];  // Cubo que guarda los horarios ocupados.
+  dias = {Lunes: 0, Martes: 1, Miercoles: 2, Jueves: 3, Viernes: 4};  // Aisgnacion de valor numerico a los dias de la semana.
 
   constructor(private loginService: LoginService,
               private perfilService: PerfilService,
@@ -25,41 +25,40 @@ export class PerfilPage implements OnInit {
               public modalController: ModalController) { }
 
   ngOnInit() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {     // Inicializacion de la matriz de 3 dimensiones.
      this.tabla[i] = [];
      for (let j = 0; j < 12; j++) {
       this.tabla[i][j] = [];
      }
     }
-    this.usuario = this.loginService.datosDetalle[0];
-    this.horariosService.getHorarios().subscribe((horarios: any[]) => {
+    this.usuario = this.loginService.datosDetalle[0]; // Se cargan los datos del usario activo.
+    this.horariosService.getHorarios().subscribe((horarios: any[]) => {     // Se cargan los horarios ocupados del usario activo.
       horarios.forEach(horario => {
-        this.tabla[this.dias[horario.dia]][horario.modulo - 1].push(horario);
+        this.tabla[this.dias[horario.dia]][horario.modulo - 1].push(horario); // Se guardan los horarios en la matriz.
       });
-      console.log(this.tabla);
     });
   }
 
-  toggleEmail() {
+  toggleEmail() {   // Funcion para cambiar el boton que se muestra junto al email.
     this.saveEmail = true;
   }
 
-  togglePhone() {
+  togglePhone() {   // Funcion para cambiar el boton que se muestra junto al telefono.
     this.savePhone = true;
   }
 
-  guardarEmail() {
+  guardarEmail() {    // Funcion para guardar el email.
     this.saveEmail = false;
     this.perfilService.setEmail(this.usuario.email).subscribe();
   }
 
-  guardarPhone() {
+  guardarPhone() {  // Funcion para guardar el telefono.
     this.savePhone = false;
     this.perfilService.setPhone(this.usuario.telefono).subscribe();
   }
 
 
-  async onClick(arrayHorarios: any[]) {
+  async onClick(arrayHorarios: any[]) {       // Modal que presenta la informacion de un ramo al hacer click.
     const modal = await this.modalController.create({
       component: ModalHorarioPage,
       componentProps: {

@@ -49,7 +49,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-card>
+      <ion-card *ngIf="usuario.tipo != 'secretaria'">
         <ion-card-header color="primary">Horario</ion-card-header>
         <ion-card-content>
           <ion-grid>

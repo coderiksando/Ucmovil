@@ -27,6 +27,7 @@ export class ChatPage implements OnInit {
     if(this.loginService.datos.usuarios[0].tipo == 'profesor')
       url += 'profesores/MensajeriaC' + '?id=' + this.loginService.datos.usuarios[0].id;
     this.httpClient.get(url).subscribe((response: any) => {
+      console.log(url);
       this.chatsRespuesta = response;
     }, err => {
       console.log(err);

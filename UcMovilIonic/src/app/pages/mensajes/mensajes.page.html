@@ -3,4 +3,42 @@
 
 
 <ion-content>
+    <div *ngIf="this.mensajesRespuesta === 'Not'" class="ion-padding">
+        Not messages for now ...
+    </div>
+    <div class="main">
+        <div class="chat-box">
+            <div class="message-area">
+            <div class="message" *ngFor="let message of this.mensajesRespuesta">
+                <p *ngIf="message.id_remitente == this.loginService.datos.usuarios[0].id">Yo <br>
+                    {{message.texto}}</p>
+                <p *ngIf="message.id_remitente != this.loginService.datos.usuarios[0].id && message.tipo_remitente != 'profesor'">{{message.nombre}}
+                    <br>
+                    {{message.texto}}
+                </p>
+                <p *ngIf="message.id_remitente != this.loginService.datos.usuarios[0].id && message.tipo_remitente === 'profesor'">Profesor
+                    <br>
+                    {{message.texto}}
+                </p>
+            </div>
+            </div>
+        </div>
+    </div>
+    
 </ion-content>
+
+
+<footer>
+    <form #formulario="ngForm" (ngSubmit)="sendMessages()">
+        <ion-item lines="none">
+            <ion-input name="Text" 
+                        [(ngModel)]="Mensaje.Text"
+                        type="text" 
+                        placeholder="Escribe un mensaje ..."
+                        required>
+            </ion-input>
+            <ion-button shape="round" expand="full" type="submit" [disabled]="formulario.invalid"> <ion-icon name="send"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </form>
+</footer>

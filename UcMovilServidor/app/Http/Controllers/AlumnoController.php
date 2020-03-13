@@ -97,13 +97,13 @@ class AlumnoController extends Controller
 
     public function MensajesC(Request $request)
     {
-      $MensajesChat["chat"] = DB::table('chat')->where('id_destinatario', $request->id_destinatario)->get();
-      foreach($MensajesChat as $mensajes){
-        foreach($mensajes as $nombre){
-          $datosRemitente = DB::table('users')->where('id', $nombre->id_remitente)->select('tipo')->get();
-        }
+      $MensajesChat = DB::table('chats')->where('id_destinatario', $request->id_destinatario)->get();
+      
+      if ($MensajesChat == ""){
+        //$datosRemitente["chat"] = array("0" => "Not");
+        return response()->json("Not");
       }
-      return response()->json($datosRemitente);
+      return response()->json($MensajesChat);
     }
 
     public function BuscarPorIdA(Request $request)

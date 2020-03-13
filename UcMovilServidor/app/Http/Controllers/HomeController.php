@@ -12,6 +12,10 @@ use App\Secretaria;
 use App\DirectoresCarrera;
 use App\Alumno;
 
+use App\Chat;
+use App\Events\NewMensaje;
+use App\Events\NewMessageNotification;
+
 class HomeController extends Controller
 {
     /**
@@ -127,12 +131,14 @@ class HomeController extends Controller
     }
 
     public function Mensaje(Request $request){
-        DB::table('chat')->insert([
-            'id_remitente'=>$request->id_remitente,
-            'id_destinatario'=>$request->id_destinatario,
-            'texto'=>$request->texto
-        ]);
-        return "ok";
+        $mensaje = new Chat;   
+        $mensaje->id_remitente = $request->id_remitente;
+        $mensaje->id_destinatario = $request->id_destinatario;
+        $mensaje->tipo_remitente = $request->tipo_remitente;
+        $mensaje->nombre = $request->nombre;
+        $mensaje->texto = $request->texto;
+        $mensaje->save();        
+        event(new NewMessageNotification($mensaje));
     }
 
     public function modificarPerfil(Request $request){
